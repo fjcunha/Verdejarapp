@@ -17,3 +17,4 @@ export interface IUsuario {
    // comentario?: any[];
    token?:		 string;
 }
+

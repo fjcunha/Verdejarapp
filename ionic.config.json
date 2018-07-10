@@ -4,5 +4,10 @@
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  }, "proxies": [
+  	{
+  		"path": "/Api",
+  		"proxyUrl": "http://mercado8.dlinkddns.com/verdejar/public/api/"
+    }
+  ]
 }

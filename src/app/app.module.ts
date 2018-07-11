@@ -6,7 +6,12 @@ import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+//PROVIDERS
 import { UsuarioProvider } from '../providers/usuario/usuario';
+import { ApoiadorProvider } from '../providers/apoiador/apoiador';
+import { ArvoreProvider } from '../providers/arvore/arvore';
+import { StorageProvider } from '../providers/storage/storage';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,10 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UsuarioProvider
+    UsuarioProvider,
+    ApoiadorProvider,
+    ArvoreProvider,
+    StorageProvider
   ]
 })
 export class AppModule {}

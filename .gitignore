@@ -64,3 +64,5 @@ bash.exe.stackdump
 www/
 .sourcemaps
 www/*
+.sourcemaps/
+.sourcemaps/*

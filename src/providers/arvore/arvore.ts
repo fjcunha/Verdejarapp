@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { IArvore } from '../../interface/IArvore';
-import { IEspecie } from '../../interface/IEspecie';
-import { IFoto } from '../../interface/IFotos';
-import { IConfig } from '../../interface/IConfig';
+import { IArvore } from '../../interfaces/IArvore';
+import { IEspecie } from '../../interfaces/IEspecie';
+import { IFoto } from '../../interfaces/IFotos';
+import { IConfig } from '../../interfaces/IConfig';
 import {Observable} from 'rxjs/Observable'
 import { Storage } from '@ionic/storage';
 

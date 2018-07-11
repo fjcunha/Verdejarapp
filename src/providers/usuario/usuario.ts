@@ -1,7 +1,7 @@
 import { Platform } from 'ionic-angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IUsuario } from '../../interface/IUsuario';
+import { IUsuario } from '../../interfaces/IUsuario';
 import { Storage } from '@ionic/storage';
 
 /*

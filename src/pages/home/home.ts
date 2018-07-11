@@ -1,17 +1,25 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { ArvoreProvider } from '../../providers/arvore/arvore'
-import { IArvore } from '../../interfaces/IArvore';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { IConfig } from '../../interfaces/IConfig';
+import { IArvore } from '../../interfaces/IArvore';
 import { StorageProvider } from '../../providers/storage/storage';
+import { ArvoreProvider } from '../../providers/arvore/arvore';
 
+/**
+ * Generated class for the HomePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
 
-	_arvores: IArvore[];
+  _arvores: IArvore[];
 	_confgis:IConfig;
 	_imgPaths = "http://mercado8.dlinkddns.com/verdejar/public/images/a/";
   constructor(public navCtrl: NavController, public providerArvore: ArvoreProvider,public storageProvider: StorageProvider) {
@@ -42,8 +50,7 @@ export class HomePage {
 
   }
 
-   ionViewDidLoad() {
+  ionViewDidLoad() {
 	
 	}
-
 }

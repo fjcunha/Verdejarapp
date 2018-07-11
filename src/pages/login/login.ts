@@ -4,7 +4,6 @@ import { NewaccountPage } from '../newaccount/newaccount';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { StorageProvider } from '../../providers/storage/storage';
 import { IUsuario } from '../../interfaces/IUsuario';
-import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -79,7 +78,7 @@ export class LoginPage {
 				this.menuCtrl.enable(true, 'auth');
 				this.menuCtrl.enable(false, 'unauth');
 				this.dismissLoading();
-				this.navCtrl.setRoot(HomePage);
+				this.navCtrl.setRoot('HomePage');
 			}
 			,
 			erro => {

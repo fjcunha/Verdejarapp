@@ -1,3 +1,4 @@
+
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
@@ -8,45 +9,5 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-
-
-  <ion-list>
-  
-    <ion-item *ngFor="let item of _arvores">
-      <h2>Arvores</h2>
-       <ion-thumbnail item-start>
-        <img src="img/thumbnail-totoro.png">
-      </ion-thumbnail>
-      <h2>{{item?.especie?.nome}}</h2>
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-  
-  </ion-list>
-
-  <ion-list>
-    <ion-item>
-      <h2>{{_confgis?.missao}}</h2>
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-    <ion-item>
-      <h2>{{_confgis?.termos}}</h2>
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-       <ion-item>
-      <h2>{{_confgis?.fone}}</h2>
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-    <ion-item >
-      <h2>{{_confgis?.email}}</h2>
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-    <ion-item>
-      <h2>{{_confgis?.site}}</h2>
-      <button ion-button clear item-end>View</button>
-    </ion-item>
-  </ion-list>
-
 
 </ion-content>

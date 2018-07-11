@@ -5,34 +5,15 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>Entar</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>login</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content>
-	
-	<ion-list padding>
-		<ion-item>
-			<ion-label stacked>E-Mail</ion-label>
-			<ion-input type="email" [(ngModel)]="_customer.email" name="email"></ion-input>
-		</ion-item>
-
-		<ion-item>
-			<ion-label stacked>Senha</ion-label>
-			<ion-input type="password" [(ngModel)]="_customer.password" name="password"></ion-input>
-		</ion-item>
-
-		<button ion-button (click)="login()"><ion-icon name="unlock"></ion-icon>&nbsp;Login</button>
-
-	</ion-list>
-
-	<ion-list padding>
-		<button ion-button block color="facebook"><ion-icon name="logo-facebook"></ion-icon>&nbsp;Login pelo Facebook</button>
-		<button ion-button block (click)="registerLink(1)">Cadastrar-se</button>
-	</ion-list>
+<ion-content padding>
 
 </ion-content>

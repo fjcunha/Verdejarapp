@@ -1,3 +1,70 @@
 page-home {
 
 }
+
+.card-background-page {
+    //Formatação card topo
+      .card-top {
+        position: relative;
+        text-align: center;
+        height: 50%;
+      }
+      .card-image {
+        opacity: 0.5;
+        width: 100%;
+        height: 100%;
+      }
+      .card-title {
+        position: absolute;
+        top: 20%;
+        font-size: 20vw; //Font size para view-port
+        //font-size: 6.0em;
+        width: 100%;
+        font-weight: bold;
+        color: black;
+      }
+        .card-subtitle {
+        //font-size: 2.0em;
+        font-size: 7vw;
+        position: absolute;
+        top: 52%;
+        width: 100%;
+        color: black;
+      }
+     
+    //Formatação card fundo
+        .card-bottom{
+        position: relative;
+      }
+        
+        .card-aboutus-title{
+            font-size: 2.0em;
+        }
+        
+        .card-aboutus-content{
+            font-size: 1.0em;
+        }
+
+        .card-aboutus-content h3{
+            font-size: 1.5em;
+            padding-top: 0.8em;
+            padding-bottom: 0.5em;
+        }
+
+        @media screen and (min-width: 768px) {
+            .card-aboutus-title{
+                font-size: 2.5em;
+            }
+            
+            .card-aboutus-content{
+                font-size: 1.5em;
+            } 
+            
+            .card-aboutus-content h3{
+                font-size: 2em;
+                padding-top: 0.8em;
+                padding-bottom: 0.5em;
+            }
+        }
+    
+    }

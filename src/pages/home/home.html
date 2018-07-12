@@ -7,13 +7,40 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content padding class="card-background-page">
+  
+    <ion-card class="card-top"><!--Cartão de arvores plantadas-->
+      <img src="assets/imgs/leaves.jpg" class="card-image"/>
+      <!--<div class="card-title">2100</div>--><!--Para testar diversos numeros-->
+      <div class="card-title">{{_arvores?.length}}</div>
+      <div class="card-subtitle">árvores plantadas</div>
+    </ion-card><!--fim cartão arvores plantadas-->
 
+    <ion-card class="card-bottom"><!--Cartão sobre o Verdejar-->
+      <ion-card-header class="card-aboutus-title">
+        Quem Somos:
+      </ion-card-header>
+      <ion-card-content class="card-aboutus-content">
+          O Verdejar, do Grupo Mulheres do Brasil - Núcleo Franca, reúne voluntárias que trabalham para mobilizar a comunidade e realizar ações de plantio na cidade. O objetivo do grupo Verdejar é plantar 1.000.000 árvores na cidade de Franca.
 
+        <h3>História:</h3>
+        {{_confgis?.historia}}
+
+        <h3>Missão:</h3>
+        {{_confgis?.missao}}
+
+        <h3>Visão:</h3>
+        {{_confgis?.visao}}
+
+      </ion-card-content>
+    </ion-card><!--Fim cartão sobre o Verdejar-->
+  
+  
+  
+  
+  <!-- <h3>Ionic Menu Starter</h3>
 
   <ion-list>
-  
     <ion-item *ngFor="let item of _arvores">
       <h2>Arvores</h2>
        <ion-thumbnail item-start>
@@ -46,7 +73,7 @@
       <h2>{{_confgis?.site}}</h2>
       <button ion-button clear item-end>View</button>
     </ion-item>
-  </ion-list>
+  </ion-list>-->
 
 
 </ion-content>

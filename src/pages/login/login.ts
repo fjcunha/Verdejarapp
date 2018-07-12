@@ -43,7 +43,7 @@ export class LoginPage {
 	}
 
 	registerLink(param) {
-		this.navCtrl.push(NewaccountPage, { param });
+		this.navCtrl.push('NewaccountPage', { param });
 	}
 
 	login() {		

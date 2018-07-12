@@ -15,6 +15,7 @@ import { ApoiadorProvider } from '../providers/apoiador/apoiador';
 import { ArvoreProvider } from '../providers/arvore/arvore';
 import { StorageProvider } from '../providers/storage/storage';
 
+//importando pagina de nova senha
 @NgModule({
   declarations: [
     MyApp

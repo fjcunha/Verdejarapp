@@ -9,11 +9,34 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>login</ion-title>
+    <ion-title><ion-icon name="contact"></ion-icon> Login</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-
+  <form novalidate>
+    <ion-list>
+        <ion-img src="../../assets/imgs/arvore.jpg"></ion-img>
+        <ion-item>
+          <ion-label floating><ion-icon name="person"></ion-icon> E-mail:</ion-label>
+          <ion-input type="email"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label floating><ion-icon name="lock"></ion-icon> Senha:</ion-label>
+          <ion-input type="password"></ion-input>
+        </ion-item>
+    </ion-list>    
+  </form>      
+    <ion-list>
+        <p><a [navPush]="rememberpwsPage">esqueci a senha</a></p>
+        <button ion-button icon-start [navPush]="newaccountPage"><ion-icon name="person-add"></ion-icon>Cadastrar</button>
+        <button ion-button icon-end [navPush]="myaccountPage" color="secondary">Entrar<ion-icon name="log-in"></ion-icon>
+        </button>
+        <ion-item>
+            <ion-label>Lembrar-me</ion-label>
+            <ion-checkbox color="primary" checked="false"></ion-checkbox>
+        </ion-item>
+    </ion-list>
 </ion-content>

@@ -10,12 +10,21 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>rememberpws</ion-title>
+    <ion-title><ion-icon name="key"></ion-icon> Esqueci a senha</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+    <ion-img src="../../assets/imgs/arvore.jpg"></ion-img>
+    <ion-item>
+        <ion-label floating><ion-icon name="person"></ion-icon> Digite seu e-mail:</ion-label>
+        <ion-input type="email"></ion-input>
+        
+    </ion-item>
+    
+        <button ion-button full (click)="presentLoading()"><ion-icon name="send"></ion-icon> Enviar</button>
+    
+    
 </ion-content>

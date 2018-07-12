@@ -10,12 +10,87 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>newaccount</ion-title>
+    <ion-title><ion-icon name="person-add"></ion-icon> Nova Conta</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <form novalidate>
+    <ion-grid>
+      <ion-list>
+        <ion-row>
+          <ion-col col-6 >
+            <ion-item>
+              <ion-label floating>Nome:</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-10>
+            <ion-item>
+              <ion-label floating>Sobrenome:</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>  
+          <ion-col col-10>
+            <ion-item>
+              <ion-label floating>E-mail:</ion-label>
+              <ion-input type="mail"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col offset-2>
+            <!--espaço vazio-->
+          </ion-col>  
+        </ion-row>
+        <ion-row>  
+          <ion-col col-4>
+              <ion-item>
+                <ion-label floating>DDD:</ion-label>
+                <ion-input type="number"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-8>
+              <ion-item>
+                <ion-label floating>Telefone:</ion-label>
+                <ion-input type="number"></ion-input>
+            </ion-item>
+          </ion-col>   
+        </ion-row>
+        <ion-row>  
+            <ion-col col-10>
+                <ion-item>
+                  <ion-label floating>Senha:</ion-label>
+                  <ion-input type="password"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-10>
+                <ion-item>
+                  <ion-label floating>Repetir senha:</ion-label>
+                  <ion-input type="password"></ion-input>
+              </ion-item>
+            </ion-col>   
+          </ion-row>
+          <ion-row>  
+            <ion-col col-8>
+                <ion-item>
+                  <ion-label>Aceitar termos</ion-label>
+                  <ion-checkbox color="secundary" checked="false"></ion-checkbox>
+              </ion-item>
+            </ion-col>  
+          </ion-row>
+      </ion-list>  
+    </ion-grid>    
+  </form>
+    <ion-grid>
+      <ion-list>
+        <ion-row>
+          
+          <button ion-button color="secondary">Enviar</button>
+         
+        </ion-row>
+      </ion-list>
+    </ion-grid>  
 </ion-content>

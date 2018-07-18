@@ -14,23 +14,21 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding>
-  <form novalidate>
+  <form [formGroup]="cadastro" >
     <ion-grid>
-      <ion-list>
+      <ion-list>  
         <ion-row>
           <ion-col col-6 >
             <ion-item>
               <ion-label floating>Nome:</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-input type="text" name="nome" formControlName="nome"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col col-10>
             <ion-item>
               <ion-label floating>Sobrenome:</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-input type="text" name="sobrenome" formControlName="sobrenome"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -38,8 +36,9 @@
           <ion-col col-10>
             <ion-item>
               <ion-label floating>E-mail:</ion-label>
-              <ion-input type="mail"></ion-input>
+              <ion-input type="mail" formControlName="email"></ion-input>
             </ion-item>
+            <h6 *ngIf="errorEmail" class="error">{{messageEmail}}</h6>
           </ion-col>
           <ion-col offset-2>
             <!--espaço vazio-->
@@ -49,48 +48,55 @@
           <ion-col col-4>
               <ion-item>
                 <ion-label floating>DDD:</ion-label>
-                <ion-input type="number"></ion-input>
+                <ion-input type="number" formControlName="ddd" maxlength="2"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col col-8>
               <ion-item>
                 <ion-label floating>Telefone:</ion-label>
-                <ion-input type="number"></ion-input>
+                <ion-input type="number" formControlName="telefone" maxlength="9"></ion-input>
             </ion-item>
           </ion-col>   
         </ion-row>
+        <ion-row>
+          <ion-item>
+              <ion-label floating>Profile Picture</ion-label>
+              <ion-input type="file"></ion-input>
+          </ion-item>
+        </ion-row>
+      
         <ion-row>  
             <ion-col col-10>
                 <ion-item>
                   <ion-label floating>Senha:</ion-label>
-                  <ion-input type="password"></ion-input>
+                  <ion-input type="password" formControlName="senha1"></ion-input>
               </ion-item>
             </ion-col>
             <ion-col col-10>
                 <ion-item>
-                  <ion-label floating>Repetir senha:</ion-label>
-                  <ion-input type="password"></ion-input>
+                  <ion-label floating>Repetir a senha:</ion-label>
+                  <ion-input type="password" formControlName="senha2"></ion-input>
               </ion-item>
             </ion-col>   
           </ion-row>
+          
           <ion-row>  
-            <ion-col col-8>
-                <ion-item>
-                  <ion-label>Aceitar termos</ion-label>
-                  <ion-checkbox color="secundary" checked="false"></ion-checkbox>
-              </ion-item>
+            <ion-col col-12>
+                    <ion-item>
+                      <ion-label stacked>Aceitar Termos</ion-label>                      
+                      <button ion-button clear item-end (click)="showAlert()">Ler</button>
+                      <ion-toggle enable checked="False" formControlName="termosContrato"></ion-toggle>
+                    </ion-item>    
             </ion-col>  
           </ion-row>
+          <ion-row> 
+            <ion-col offset-8>       
+              <button [disabled]="cadastro.invalid"ion-button color="secondary">Enviar</button>
+            </ion-col>
+          </ion-row>
       </ion-list>  
+      
     </ion-grid>    
+    
   </form>
-    <ion-grid>
-      <ion-list>
-        <ion-row>
-          
-          <button ion-button color="secondary">Enviar</button>
-         
-        </ion-row>
-      </ion-list>
-    </ion-grid>  
 </ion-content>

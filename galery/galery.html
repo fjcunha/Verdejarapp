@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Galeria</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+      <ion-row>
+          <ion-col col-4 *ngFor="let img of images">
+              <button ion-button (click)="openModal(img.image_path)">
+                  <img src="{{img.image_path}}" >
+              </button>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>

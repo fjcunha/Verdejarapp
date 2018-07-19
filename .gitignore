@@ -68,3 +68,4 @@ www/*
 .sourcemaps/*
 platforms/
 plugins/
+.vscode

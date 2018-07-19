@@ -66,3 +66,5 @@ www/
 www/*
 .sourcemaps/
 .sourcemaps/*
+platforms/
+plugins/

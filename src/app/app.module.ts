@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { Geolocation  } from '@ionic-native/geolocation';
 
 import { MyApp } from './app.component';
 
@@ -37,7 +38,8 @@ import { StorageProvider } from '../providers/storage/storage';
     UsuarioProvider,
     ApoiadorProvider,
     ArvoreProvider,
-    StorageProvider
+    StorageProvider,
+    Geolocation
   ]
 })
 export class AppModule {}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { IConfig } from '../../interfaces/IConfig';
 import { IArvore } from '../../interfaces/IArvore';
 import { StorageProvider } from '../../providers/storage/storage';
@@ -22,7 +22,17 @@ export class HomePage {
   _arvores: IArvore[];
 	_confgis:IConfig;
 	_imgPaths = "http://mercado8.dlinkddns.com/verdejar/public/images/a/";
-  constructor(public navCtrl: NavController, public providerArvore: ArvoreProvider,public storageProvider: StorageProvider) {
+  constructor(public navCtrl: NavController, 
+    public providerArvore: ArvoreProvider,
+    public storageProvider: StorageProvider,
+  private app:App) {
+
+    this.storageProvider.GetStorage('VerdejarUser').then(user=>{
+      if(user == null) {
+        let nav = this.app.getRootNav();
+        nav.setRoot('LoginPage');
+      }
+    })
 
   	this.providerArvore.getAll().subscribe(retorno => {
 

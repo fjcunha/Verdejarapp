@@ -19,23 +19,23 @@
 <ion-content padding>
 
     <ion-card>
-        <img src="../../assets/imgs/avatar.jpg"/>    
+        <img [src]="userInfos.picture"/>    
         <ion-card-content>
           <ion-card-title>
-           Nome Usuario
+           {{userInfos.name}}
           </ion-card-title>
         </ion-card-content>
         <ion-item>
             <ion-label stacked>Nome Completo</ion-label>
-            <ion-input [disabled]="minhaContaAlterarInput" type="text" placeholder="Nome Completo"></ion-input>
+            <ion-input [(ngModel)]="userInfos.name" [disabled]="minhaContaAlterarInput" type="text" placeholder="Nome Completo"></ion-input>
         </ion-item> 
         <ion-item>
             <ion-label stacked>Email</ion-label>
-            <ion-input [disabled]="minhaContaAlterarInput" type="mail" placeholder="Email"></ion-input>
+            <ion-input [(ngModel)]="userInfos.email" [disabled]="minhaContaAlterarInput" type="email" placeholder="Email"></ion-input>
         </ion-item> 
         <ion-item>
             <ion-label stacked>Telefone</ion-label>
-            <ion-input [disabled]="minhaContaAlterarInput" type="number" placeholder="(DDD) Telefone"></ion-input>
+            <ion-input [(ngModel)]="userInfos.phone" [disabled]="minhaContaAlterarInput" type="text" placeholder="(DDD) Telefone"></ion-input>
         </ion-item> 
         <ion-item>
           <ion-icon name='images' item-start style="color: #3f729b"></ion-icon>
@@ -45,7 +45,7 @@
         <ion-item>
           <ion-icon name='flower' item-start style="color: #008000"></ion-icon>
           Arvores
-          <ion-badge item-end>260k</ion-badge>
+          <ion-badge item-end>{{userInfos.arvore.length}}</ion-badge>
         </ion-item>
         <ion-item > 
             <button ion-button outline item-end icon-start (click)="AtivarInput()" *ngIf="minhaContaBotaoAlterarMostrar">

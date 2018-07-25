@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, ToastController, LoadingController, AlertController } from 'ionic-angular';
 import { NewaccountPage } from '../newaccount/newaccount';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { StorageProvider } from '../../providers/storage/storage';
@@ -25,7 +25,9 @@ export class LoginPage {
 	constructor(public navCtrl: NavController, public navParams: NavParams,
 		public menuCtrl: MenuController, public customerProvider: UsuarioProvider, 
 		public storageProvider: StorageProvider,
-		public toastController: ToastController,public loadingCtrl: LoadingController
+    public toastController: ToastController,
+    public loadingCtrl: LoadingController,
+    private alertCtrl:AlertController
 		) {
 			this.storageProvider.GetStorage('VerdejarUser').then(val => {
 				if(val) {
@@ -47,24 +49,42 @@ export class LoginPage {
 	}
 
 	login() {		
+    if(!(this._customer.email != null && this._customer.email != '' &&
+    this._customer.password != null && this._customer.password != '')){
+      let alert = this.alertCtrl.create({
+        title:'Dados inválidos',
+        subTitle:'Preencha os campos corretamente para entrar',
+        buttons:['Ok']
+      });
+      alert.present();
+      return;
+    }
+
 		this.presentLoading();
 		this.customerProvider.loginCustomer(this._customer).subscribe(res => {
-				this._customer = res;
-				console.log(res);
-				if(res){
-					this.GetUserData(this._customer.token);	
-				}	
-				else{
-					this.dismissLoading();
-				}
+      this.dismissLoading();
+      console.log(res);
 
-			},
-				erro => {
-					this.dismissLoading();
-					console.log(erro.text);
-					this.presentToast(erro.error, 'middle');
-			}
-		)
+      if(res != null){
+        this._customer = res;
+        this.GetUserData(this._customer.token);	
+
+      }else{
+        let alert = this.alertCtrl.create({
+          title:'Dados inválidos',
+          subTitle:'Email ou senha incorreta.',
+          buttons:['Ok']
+        });
+        alert.present();
+      }
+				
+
+    },
+      erro => {
+        this.dismissLoading();
+        console.log(erro.text);
+        this.presentToast(erro.error, 'middle');
+    })
 
 	}
 
@@ -78,7 +98,7 @@ export class LoginPage {
 				this.menuCtrl.enable(true, 'auth');
 				this.menuCtrl.enable(false, 'unauth');
 				this.dismissLoading();
-				this.navCtrl.setRoot('HomePage');
+				this.navCtrl.setRoot('TabsPage');
 			}
 			,
 			erro => {

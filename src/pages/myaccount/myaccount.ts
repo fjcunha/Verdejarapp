@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { StorageProvider } from '../../providers/storage/storage';
+import { IUsuario } from '../../interfaces/IUsuario';
 
 /**
  * Generated class for the MyaccountPage page.
@@ -17,8 +19,14 @@ export class MyaccountPage {
   public minhaContaAlterarInput:boolean = true;
   public minhaContaBotaoAlterarMostrar:boolean = true;
   public minhaContaBotaoSalvarMostrar:boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  
+  userInfos: IUsuario = {arvore:[]};
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private storageProvider:StorageProvider) {
   }
+
   AtivarInput(){
     if (this.minhaContaBotaoAlterarMostrar == true){
       this.minhaContaAlterarInput = false;
@@ -32,8 +40,12 @@ export class MyaccountPage {
     }
     
   }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MyaccountPage');
+
+  ionViewWillEnter() {
+    this.storageProvider.GetStorage('VerdejarUser').then(user=>{
+      this.userInfos = user;
+      console.log(this.userInfos);
+    })
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { NewtreePage } from '../pages/newtree/newtree';
 import { StorageProvider } from '../providers/storage/storage';
 
 
@@ -26,8 +27,10 @@ export class MyApp {
       { title: 'Home', component: 'TabsPage' },
       { title: 'Login', component: 'LoginPage' },
       { title: 'Minha Conta', component: 'MyaccountPage' },
+      { title: 'Mapa', component: 'MapsPage' },
       { title: 'Adminstração', component: 'AdminPage' },
-      { title: 'Sair', component: 'LoginPage' }
+      { title: 'Sair', component: 'LoginPage' },     
+      
     ];
 
   }

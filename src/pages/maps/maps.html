@@ -10,12 +10,32 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Maps</ion-title>
+    <ion-title>Map</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>    
-    <div #map id="map"></div>  
+<ion-content padding>   
+        
+    <ion-card #map id="map"></ion-card>
+    <ion-fab right bottom>
+      <button ion-fab (click)="paginaNovaArvore()" color="vibrant">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-fab>
+    
+
+<!-- top right edge
+     left top
+     left bottom
+     center middle
+     right middle
+     right bottom -->
+<!-- <div #map id="map"></div>  -->
+
+  <!-- Only icon (no text) -->
+   
+  
 </ion-content>
+

@@ -10,12 +10,24 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>newtree</ion-title>
+    <ion-title>Cadastrar Arvore</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Escolha a especie</ion-label>
+      <ion-select [(ngModel)]="escepies" cancelText="Cancelar">
+        <ion-option *ngFor="let esp of especies" value={{esp.key}}>{{esp.especie}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+      
+  <button ion-button block color="secondary" icon-start (click)="chamarCamera()">
+      <ion-icon name="camera"></ion-icon>
+      Tirar foto
+  </button>
+  <button ion-button block  > Cadastrar árvore  </button>
 </ion-content>

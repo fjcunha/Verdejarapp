@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, ToastController, LoadingController } from 'ionic-angular';
 import { IConfig } from '../../interfaces/IConfig';
 import { IArvore } from '../../interfaces/IArvore';
 import { StorageProvider } from '../../providers/storage/storage';
 import { ArvoreProvider } from '../../providers/arvore/arvore';
+import { IUsuario } from '../../interfaces/IUsuario';
+import { TreePageModule } from '../tree/tree.module';
 
 /**
  * Generated class for the HomePage page.
@@ -19,48 +21,84 @@ import { ArvoreProvider } from '../../providers/arvore/arvore';
 })
 export class HomePage {
 
-  _arvores: IArvore[];
+  	_arvores: IArvore[];
 	_confgis:IConfig;
+	_customer:IUsuario;
+
+	loading;
+
 	_imgPaths = "http://mercado8.dlinkddns.com/verdejar/public/images/a/";
-  constructor(public navCtrl: NavController, 
-    public providerArvore: ArvoreProvider,
-    public storageProvider: StorageProvider,
-  private app:App) {
+  
 
-    this.storageProvider.GetStorage('VerdejarUser').then(user=>{
-      if(user == null) {
-        let nav = this.app.getRootNav();
-        nav.setRoot('LoginPage');
-      }
-    })
+  	constructor(public navCtrl: NavController, public providerArvore: ArvoreProvider,
+			    public toastController: ToastController, public storageProvider: StorageProvider,
+			    public loadingCtrl: LoadingController, public menuCtrl: MenuController) {
 
-  	this.providerArvore.getAll().subscribe(retorno => {
-
-  		console.log(retorno);
-				//Salva os dados dentro do banco de dados
-				this._arvores = retorno;
-				this.storageProvider.SetStorage('VerdejarAvores', this._arvores);
-			},error=>{
-				console.log(error.error);
-				console.log(error.texte);
-			});
-
-	this.providerArvore.getConfig().subscribe(retorno => {
-		console.log(retorno);
-				//Salva os dados dentro do banco de dados
-				this._confgis = retorno;
-				this.storageProvider.SetStorage('VerdejarConfigs', this._confgis);
-			}
-			,error=>{
-				console.log(error.error);
-				console.log(error.texte);
-			}
-	);
-
-
-  }
-
-  ionViewDidLoad() {
+ 
+	}
 	
+	public LoadUserInit(){
+		
+		console.log("Load User");
+
+		this.storageProvider.GetStorage('VerdejarUser').then(user=>{
+	      	if(user != null) {
+
+	      			console.log('Logado');
+					this._customer = user;
+					this.menuCtrl.enable(true, 'Auth');
+					this.menuCtrl.enable(false, 'NotAuth');
+			}
+			else{
+				console.log("Não logado");
+				this.menuCtrl.enable(false, 'Auth');
+				this.menuCtrl.enable(true, 'NotAuth');
+			}
+	    });
+
+		
+	}
+
+	public LoadConfigs(){
+
+		console.log("Loag Config");
+		
+		this.providerArvore.getConfig().subscribe(retorno => {
+			console.log(retorno);
+					//Salva os dados dentro do banco de dados
+					this._confgis = retorno;
+					this.storageProvider.SetStorage('VerdejarConfigs', this._confgis);
+				}
+				,error=>{
+					console.log(error.error);
+					console.log(error.texte);
+				}
+		);
+	}
+
+	public LoadArvores(){
+
+		console.log('Carrega arvores');
+
+		this.providerArvore.getAll().subscribe(retorno => {
+
+	  		console.log(retorno);
+					//Salva os dados dentro do banco de dados
+					this._arvores = retorno;
+					this.storageProvider.SetStorage('VerdejarAvores', this._arvores);
+				},error=>{
+					console.log(error.error);
+					console.log(error.texte);
+		});
+	}
+
+	ionViewCanLoad(){
+		
+	}
+
+  	ionViewDidLoad() {
+		this.LoadUserInit();
+  		this.LoadArvores();
+  		this.LoadConfigs();
 	}
 }

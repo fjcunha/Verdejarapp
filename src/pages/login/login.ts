@@ -4,6 +4,8 @@ import { NewaccountPage } from '../newaccount/newaccount';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { StorageProvider } from '../../providers/storage/storage';
 import { IUsuario } from '../../interfaces/IUsuario';
+import { Facebook } from '@ionic-native/facebook';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -24,10 +26,8 @@ export class LoginPage {
 	
 	constructor(public navCtrl: NavController, public navParams: NavParams,
 		public menuCtrl: MenuController, public customerProvider: UsuarioProvider, 
-		public storageProvider: StorageProvider,
-    public toastController: ToastController,
-    public loadingCtrl: LoadingController,
-    private alertCtrl:AlertController
+		public storageProvider: StorageProvider, public toastController: ToastController,
+        public loadingCtrl: LoadingController, private alertCtrl: AlertController, public facebook: Facebook
 		) {
 			this.storageProvider.GetStorage('VerdejarUser').then(val => {
 				if(val) {
@@ -49,42 +49,119 @@ export class LoginPage {
 	}
 
 	login() {		
-    if(!(this._customer.email != null && this._customer.email != '' &&
-    this._customer.password != null && this._customer.password != '')){
-      let alert = this.alertCtrl.create({
-        title:'Dados inválidos',
-        subTitle:'Preencha os campos corretamente para entrar',
-        buttons:['Ok']
+		    if(!(this._customer.email != null && this._customer.email != '' &&
+		    	this._customer.password != null && this._customer.password != ''))
+		    {
+		      let alert = this.alertCtrl.create({
+		        title:'Dados inválidos',
+		        subTitle:'Preencha os campos corretamente para entrar',
+		        buttons:['Ok']
+		      });
+		    
+		      alert.present();
+		      return;
+	    	}
+
+	    	//requisita o login na API
+			this.presentLoading();
+			this.customerProvider.loginCustomer(this._customer).subscribe(res => {
+	      	
+	      	console.log(res);
+
+	      	//retorno TRUE
+	      if(res != null){
+	        this._customer = res;
+	        //busca os dados do usuario dentro da API
+	        this.GetUserData(this._customer.token);	
+	        
+	      }
+	      else
+	      {
+	        let alert = this.alertCtrl.create({
+	          title:'Dados inválidos',
+	          subTitle:'Email ou senha incorreta.',
+	          buttons:['Ok']
+	        });
+	        
+	        alert.present();
+	      }
+
+	      this.dismissLoading();
+	    },
+	      erro => {
+	        this.dismissLoading();
+	        console.log(erro.text);
+	        this.presentToast(erro.error, 'middle');
+	    })
+
+	}
+
+
+
+
+//método para chamar api do facebook e salvar no banco o usuario    
+loginFacebook() {
+     let permissions = new Array<string>();
+     permissions = ["public_profile", "email"];
+
+     this.facebook.login(permissions).then((response) => {
+      let params = new Array<string>();
+
+      this.facebook.api("/me?fields=name,email", params)
+      .then(res => {
+
+          //estou usando o model para criar os usuarios
+          
+          this._customer.name = res.name;
+          this._customer.email = res.email;
+          this._customer.password = res.id;
+          this._customer.phone = "00000000";
+          this._customer.admin = 0;
+        
+          this.loginfromfacebook();
+        }, (error) => {
+          alert(error);
+          console.log('ERRO LOGIN: ',error);
+        })
+      }, (error) => {
+        alert(error);
       });
-      alert.present();
-      return;
     }
 
-		this.presentLoading();
-		this.customerProvider.loginCustomer(this._customer).subscribe(res => {
-      this.dismissLoading();
-      console.log(res);
 
-      if(res != null){
-        this._customer = res;
-        this.GetUserData(this._customer.token);	
+	loginfromfacebook() {		
+		   
+	    	//requisita o login na API
+			this.presentLoading();
+			this.customerProvider.loginCustomerFacebook(this._customer).subscribe(res => {
+	      	
+	      	console.log(res);
 
-      }else{
-        let alert = this.alertCtrl.create({
-          title:'Dados inválidos',
-          subTitle:'Email ou senha incorreta.',
-          buttons:['Ok']
-        });
-        alert.present();
-      }
-				
+	      	//retorno TRUE
+	      if(res != null){
+	        this._customer = res;
+	        //busca os dados do usuario dentro da API
+	        this.GetUserData(this._customer.token);	
+	        
+	      }
+	      else
+	      {
+	        let alert = this.alertCtrl.create({
+	          title:'Dados inválidos',
+	          subTitle:'Email ou senha incorreta.',
+	          buttons:['Ok']
+	        });
+	        
+	        alert.present();
+	      }
 
-    },
-      erro => {
-        this.dismissLoading();
-        console.log(erro.text);
-        this.presentToast(erro.error, 'middle');
-    })
+	      this.dismissLoading();
+	    },
+	      erro => {
+	        this.dismissLoading();
+	        console.log(erro.text);
+	        this.presentToast(erro.error, 'middle');
+	    })
 
 	}
 
@@ -97,12 +174,12 @@ export class LoginPage {
 				this.storageProvider.SetStorage('VerdejarUser', this._customer);
 				this.menuCtrl.enable(true, 'auth');
 				this.menuCtrl.enable(false, 'unauth');
-				this.dismissLoading();
-				this.navCtrl.setRoot('TabsPage');
+				//this.dismissLoading();
+				this.navCtrl.setRoot(HomePage);
 			}
 			,
 			erro => {
-				this.dismissLoading();
+				//this.dismissLoading();
 				this.presentToast(erro.error, 'middle');
 			}
 		

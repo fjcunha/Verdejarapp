@@ -14,89 +14,75 @@
   </ion-navbar>
 
 </ion-header>
+
+
 <ion-content padding>
-  <form [formGroup]="cadastro" >
+
     <ion-grid>
-      <ion-list>  
-        <ion-row>
-          <ion-col col-6 >
-            <ion-item>
-              <ion-label floating>Nome:</ion-label>
-              <ion-input type="text" name="nome" formControlName="nome"></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col col-10>
-            <ion-item>
-              <ion-label floating>Sobrenome:</ion-label>
-              <ion-input type="text" name="sobrenome" formControlName="sobrenome"></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-        <ion-row>  
-          <ion-col col-10>
-            <ion-item>
-              <ion-label floating>E-mail:</ion-label>
-              <ion-input type="mail" formControlName="email"></ion-input>
-            </ion-item>
-            <!-- <h6 *ngIf="errorEmail" class="error">{{messageEmail}}</h6> -->
-          </ion-col>
-          <ion-col offset-2>
-            <!--espaço vazio-->
-          </ion-col>  
-        </ion-row>
-        <ion-row>  
-          <ion-col col-4>
+        <ion-list>
+          <ion-row>
+            <ion-col col-12 >
               <ion-item>
-                <ion-label floating>DDD:</ion-label>
-                <ion-input type="number" formControlName="ddd" maxlength="2"></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col col-8>
-              <ion-item>
-                <ion-label floating>Telefone:</ion-label>
-                <ion-input type="number" formControlName="telefone" maxlength="9"></ion-input>
-            </ion-item>
-          </ion-col>   
-        </ion-row>
-        <ion-row>
-          <ion-item>
-              <ion-label floating>Profile Picture</ion-label>
-              <ion-input type="file"></ion-input>
-          </ion-item>
-        </ion-row>
-      
-        <ion-row>  
-            <ion-col col-10>
-                <ion-item>
-                  <ion-label floating>Senha:</ion-label>
-                  <ion-input type="password" formControlName="senha1"></ion-input>
+                <ion-label floating>Nome:</ion-label>
+                <ion-input type="text" required [(ngModel)]="_customer.name"></ion-input>
               </ion-item>
             </ion-col>
-            <ion-col col-10>
+          </ion-row>
+          <ion-row>  
+            <ion-col col-12>
+              <ion-item>
+                <ion-label floating>E-mail:</ion-label>
+                <ion-input type="mail" required [(ngModel)]="_customer.email" ></ion-input>
+              </ion-item>
+            </ion-col>
+            
+          </ion-row>
+          <ion-row>  
+            <ion-col col-12>
                 <ion-item>
-                  <ion-label floating>Repetir a senha:</ion-label>
-                  <ion-input type="password" formControlName="senha2"></ion-input>
+                  <ion-label floating>Telefone:</ion-label>
+                  <ion-input type="text" required [(ngModel)]="_customer.phone"></ion-input>
               </ion-item>
             </ion-col>   
           </ion-row>
-          
+
           <ion-row>  
-            <ion-col col-12>
-                    <ion-item>
-                      <ion-label stacked>Aceitar Termos</ion-label>                      
-                      <button ion-button clear item-end (click)="showAlert()">Ler</button>
-                      <ion-toggle enable checked="False" formControlName="termosContrato"></ion-toggle>
-                    </ion-item>    
-            </ion-col>  
-          </ion-row>
-          <ion-row> 
-            <ion-col offset-8>       
-              <button [disabled]="cadastro.invalid"ion-button color="secondary">Enviar</button>
-            </ion-col>
-          </ion-row>
-      </ion-list>  
-      
-    </ion-grid>    
-    
-  </form>
+              <ion-col col-12>
+                  <ion-item>
+                    <ion-label floating>Senha:</ion-label>
+                    <ion-input type="password" aria-required="true" [(ngModel)]="_customer.password"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col col-12>
+                  <ion-item>
+                    <ion-label floating>Repetir senha:</ion-label>
+                    <ion-input type="password" aria-required="true" [(ngModel)]="confirmPassword" (ionBlur)="confirm()"></ion-input>
+                </ion-item>
+              </ion-col>   
+            </ion-row>
+            <ion-row>  
+              <ion-col col-12>
+                  <ion-item>
+                    <ion-label>Aceitar termos</ion-label>
+                    <ion-checkbox color="secundary" aria-required="true" [ngModel]="_termor" (ionChange)="Termos()" required checked="false"></ion-checkbox>
+                    <p><a (click)="showTermos()">Ler os termos de uso</a></p>
+                </ion-item>
+                <ion-item>
+                    <ion-label (click)="showTermos()">Ler os termos de uso</ion-label>
+                </ion-item>
+              </ion-col>  
+            </ion-row>
+
+            <ion-item *ngIf="verifyPass">
+              
+              <button ion-button icon-end block (click)="register();" color="secondary">
+                Salvar
+                <ion-icon name="log-in"></ion-icon>
+              </button>
+
+            </ion-item>
+        </ion-list>  
+      </ion-grid>    
+
 </ion-content>
+

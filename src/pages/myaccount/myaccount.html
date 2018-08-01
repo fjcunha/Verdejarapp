@@ -19,10 +19,10 @@
 <ion-content padding>
 
     <ion-card>
-        <img [src]="userInfos.picture"/>    
+        
         <ion-card-content>
           <ion-card-title>
-           {{userInfos.name}}
+           {{userInfos?.name}}
           </ion-card-title>
         </ion-card-content>
         <ion-item>
@@ -35,18 +35,35 @@
         </ion-item> 
         <ion-item>
             <ion-label stacked>Telefone</ion-label>
-            <ion-input [(ngModel)]="userInfos.phone" [disabled]="minhaContaAlterarInput" type="text" placeholder="(DDD) Telefone"></ion-input>
-        </ion-item> 
-        <ion-item>
-          <ion-icon name='images' item-start style="color: #3f729b"></ion-icon>
-            Fotos
-          <ion-badge item-end>9</ion-badge>
-        </ion-item> 
-        <ion-item>
+            <ion-input [(ngModel)]="userInfos.phone" [disabled]="minhaContaAlterarInput" type="text" placeholder="(DD) Telefone"></ion-input>
+        </ion-item>  
+        <ion-item *ngIf="userInfos.arvore">
           <ion-icon name='flower' item-start style="color: #008000"></ion-icon>
           Arvores
-          <ion-badge item-end>{{userInfos.arvore.length}}</ion-badge>
+          <ion-badge item-end>{{userInfos?.arvore.length}}</ion-badge>
+
+          <ion-item *ngFor="let itemFotos of userInfos?.arvore.fotos" >
+            <ion-icon name='images' item-start style="color: #3f729b"></ion-icon>
+              Fotos
+            <ion-badge item-end>{{userInfos?.arvore?.fotos.length}}</ion-badge>
+          </ion-item>
+
+        
         </ion-item>
+
+        <ion-item *ngIf="!userInfos.arvore">
+          <ion-icon name='flower' item-start style="color: #008000"></ion-icon>
+          
+            <button ion-button outline item-end icon-start>
+                <ion-icon name="plus"></ion-icon>
+                Cadastre sua arvore
+            </button>
+          
+          
+        </ion-item>
+
+        
+
         <ion-item > 
             <button ion-button outline item-end icon-start (click)="AtivarInput()" *ngIf="minhaContaBotaoAlterarMostrar">
                 <ion-icon name="filing"></ion-icon>

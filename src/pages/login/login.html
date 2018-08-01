@@ -38,14 +38,18 @@
   </ion-list>       
 
   <ion-list>
-      <p><a [navPush]="'RememberpwsPage'">esqueci a senha</a></p>
-      <button ion-button icon-end block (click)="login()" color="secondary">Entrar<ion-icon name="log-in"></ion-icon>
+      <p><a [navPush]="'RememberpwsPage'">Esqueci minha senha</a></p>
+      <button ion-button icon-end block (click)="login()" color="secondary">
+        Entrar
+        <ion-icon name="log-in"></ion-icon>
       </button>
-      <button ion-button icon-start block [navPush]="'NewaccountPage'"><ion-icon name="person-add"></ion-icon>Cadastrar</button>
-      
-      <!-- <ion-item>
-          <ion-label>Lembrar-me</ion-label>
-          <ion-checkbox color="primary" checked="false"></ion-checkbox>
-      </ion-item> -->
+
+      <button ion-button icon-left block (click)="loginFacebook()">
+        <ion-icon name="logo-facebook"></ion-icon> Entrar pelo FaceBook 
+      </button>
+
+      <button ion-button icon-start block [navPush]="'NewaccountPage'" color="danger">
+        <ion-icon name="person-add"></ion-icon>Cadastrar
+      </button>
   </ion-list>
 </ion-content>

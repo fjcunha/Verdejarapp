@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,MenuController } from 'ionic-angular';
 import { StorageProvider } from '../../providers/storage/storage';
 import { IUsuario } from '../../interfaces/IUsuario';
 
@@ -20,11 +20,16 @@ export class MyaccountPage {
   public minhaContaBotaoAlterarMostrar:boolean = true;
   public minhaContaBotaoSalvarMostrar:boolean = false;
   
-  userInfos: IUsuario = {arvore:[]};
+  userInfos: IUsuario = {arvore : []};
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              private storageProvider:StorageProvider) {
+              private storageProvider:StorageProvider
+              , public menuCtrl: MenuController) {
+
+
+    this.LoadUserInit();
+
   }
 
   AtivarInput(){
@@ -42,10 +47,29 @@ export class MyaccountPage {
   }
 
   ionViewWillEnter() {
+
+    this.LoadUserInit();
+   
+  }
+
+  public LoadUserInit(){
+    
+    console.log("Load User");
+
     this.storageProvider.GetStorage('VerdejarUser').then(user=>{
-      this.userInfos = user;
-      console.log(this.userInfos);
-    })
+          if(user != null) {
+            console.log(user);
+              console.log('Logado');
+          this.userInfos = user;
+          this.menuCtrl.enable(true, 'Auth');
+      }
+      else{
+        console.log("Não logado");
+        this.navCtrl.setRoot('LoginPage');
+      }
+      });
+
+    
   }
 
 }

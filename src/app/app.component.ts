@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { NewtreePage } from '../pages/newtree/newtree';
 import { StorageProvider } from '../providers/storage/storage';
+import { IUsuario } from '../interfaces/IUsuario';
+import { HomePage } from '../pages/home/home';
 
 
 @Component({
@@ -12,25 +13,32 @@ import { StorageProvider } from '../providers/storage/storage';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = 'TabsPage';
+  rootPage: any = 'HomePage';
 
-  pages: Array<{title: string, component: any}>;
+  pagesAuth: Array<{title: string, component: any, icon: string}>;
+  pagesNotAuth: Array<{title: string, component: any, icon: string}>;
 
   constructor(public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
-    private storageProvider:StorageProvider) {
+    private storageProvider:StorageProvider,
+    public menuCtrl: MenuController) {
+
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: 'TabsPage' },
-      { title: 'Login', component: 'LoginPage' },
-      { title: 'Minha Conta', component: 'MyaccountPage' },
-      { title: 'Mapa', component: 'MapsPage' },
-      { title: 'Adminstração', component: 'AdminPage' },
-      { title: 'Sair', component: 'LoginPage' },     
-      
+    this.pagesNotAuth = [
+      { title: 'Home', component: 'HomePage', icon: 'home' },
+      { title: 'Login', component: 'LoginPage', icon: 'person' },
+      { title: 'Mapa', component: 'MapsPage', icon: 'map' },
+    ];
+
+    this.pagesAuth = [
+      { title: 'Home', component: 'HomePage', icon: 'home' },
+      { title: 'Minha Conta', component: 'MyaccountPage',  icon: 'person' },
+      { title: 'Minhas Arvores', component: 'TreePage',  icon: 'tree' },
+      { title: 'Mapa', component: 'MapsPage' , icon: 'map'} ,
+      { title: 'Sair', component: 'Sair', icon: 'person' }
     ];
 
   }
@@ -41,6 +49,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      //this.loadUserInit();
     });
   }
 
@@ -55,4 +64,6 @@ export class MyApp {
     this.storageProvider.SetStorage('VerdejarUser',null);
     this.nav.setRoot('LoginPage');
   }
+
+  
 }

@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation  } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
+import { Facebook } from '@ionic-native/facebook';
 
 import { MyApp } from './app.component';
 
@@ -29,7 +30,7 @@ import { StorageProvider } from '../providers/storage/storage';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,7 +46,8 @@ import { StorageProvider } from '../providers/storage/storage';
     ArvoreProvider,
     StorageProvider,
     Camera,
-    Geolocation
+    Geolocation,
+    Facebook
   ]
 })
 export class AppModule {}

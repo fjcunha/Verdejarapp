@@ -133,35 +133,35 @@ loginFacebook() {
 		   
 	    	//requisita o login na API
 			this.presentLoading();
-			this.customerProvider.loginCustomerFacebook(this._customer).subscribe(res => {
+			// this.customerProvider.loginCustomerFacebook(this._customer).subscribe(res => {
 	      	
-	      	console.log(res);
+	    //   	console.log(res);
 
-	      	//retorno TRUE
-	      if(res != null){
-	        this._customer = res;
-	        //busca os dados do usuario dentro da API
-	        this.GetUserData(this._customer.token);	
+	    //   	//retorno TRUE
+	    //   if(res != null){
+	    //     this._customer = res;
+	    //     //busca os dados do usuario dentro da API
+	    //     this.GetUserData(this._customer.token);	
 	        
-	      }
-	      else
-	      {
-	        let alert = this.alertCtrl.create({
-	          title:'Dados inválidos',
-	          subTitle:'Email ou senha incorreta.',
-	          buttons:['Ok']
-	        });
+	    //   }
+	    //   else
+	    //   {
+	    //     let alert = this.alertCtrl.create({
+	    //       title:'Dados inválidos',
+	    //       subTitle:'Email ou senha incorreta.',
+	    //       buttons:['Ok']
+	    //     });
 	        
-	        alert.present();
-	      }
+	    //     alert.present();
+	    //   }
 
-	      this.dismissLoading();
-	    },
-	      erro => {
-	        this.dismissLoading();
-	        console.log(erro.text);
-	        this.presentToast(erro.error, 'middle');
-	    })
+	    //   this.dismissLoading();
+	    // },
+	    //   erro => {
+	    //     this.dismissLoading();
+	    //     console.log(erro.text);
+	    //     this.presentToast(erro.error, 'middle');
+	    // })
 
 	}
 

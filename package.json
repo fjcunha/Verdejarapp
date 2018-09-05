@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "5.2.11",
     "@ionic-native/camera": "^4.10.0",
     "@ionic-native/core": "4.8.0",
+    "@ionic-native/facebook": "^4.12.2",
     "@ionic-native/geolocation": "^4.9.2",
     "@ionic-native/splash-screen": "4.8.0",
     "@ionic-native/status-bar": "4.8.0",

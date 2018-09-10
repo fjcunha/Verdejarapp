@@ -13,7 +13,7 @@ import { HomePage } from '../pages/home/home';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = 'HomePage';
+  rootPage: any = 'TabsPage';
 
   pagesAuth: Array<{title: string, component: any, icon: string}>;
   pagesNotAuth: Array<{title: string, component: any, icon: string}>;
@@ -28,15 +28,15 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pagesNotAuth = [
-      { title: 'Home', component: 'HomePage', icon: 'home' },
+      { title: 'Home', component: 'TabsPage', icon: 'home' },
       { title: 'Login', component: 'LoginPage', icon: 'person' },
       { title: 'Mapa', component: 'MapsPage', icon: 'map' },
     ];
 
     this.pagesAuth = [
-      { title: 'Home', component: 'HomePage', icon: 'home' },
+      { title: 'Home', component: 'TabsPage', icon: 'home' },
       { title: 'Minha Conta', component: 'MyaccountPage',  icon: 'person' },
-      { title: 'Minhas Arvores', component: 'TreePage',  icon: 'tree' },
+      { title: 'Minhas Arvores', component: 'MyTreesPage',  icon: 'tree' },
       { title: 'Mapa', component: 'MapsPage' , icon: 'map'} ,
       { title: 'Sair', component: 'Sair', icon: 'person' }
     ];

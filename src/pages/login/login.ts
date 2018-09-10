@@ -175,7 +175,7 @@ loginFacebook() {
 				this.menuCtrl.enable(true, 'auth');
 				this.menuCtrl.enable(false, 'unauth');
 				//this.dismissLoading();
-				this.navCtrl.setRoot(HomePage);
+				this.navCtrl.setRoot('TabsPage');
 			}
 			,
 			erro => {

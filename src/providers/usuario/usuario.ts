@@ -55,6 +55,20 @@ export class UsuarioProvider {
 		let url: string = this.basepath + "/user";
 
 		return this.http.get<IUsuario>(url,  { headers: this.headers });
-	}
+  }
+  
+  // ResetPassword(token:string){
+  //   this.headers = new HttpHeaders()
+	// 		.set("X-CustomHeader", "custom header value")
+	// 		.set('Content-Type', 'application/json; charset=utf-8')
+	// 		.set("cache-control", "no-cache")
+	// 		.set("Access-Control-Allow-Origin", "*")
+	// 		.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+	// 		.set('Authorization', 'Bearer ' + token);
+
+	// 	let url: string = this.basepath + "/user";
+
+	// 	return this.http.post<IUsuario>(url,  { headers: this.headers });
+  // }
 
 }

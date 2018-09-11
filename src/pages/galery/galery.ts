@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ModalController, Modal } from 'ionic-angular';
 
+import { ArvoreProvider } from '../../providers/arvore/arvore';
+
 /**
  * Generated class for the GaleryPage page.
  *
@@ -17,40 +19,41 @@ export class GaleryPage {
 
    // Variável responsável por guardar a lista de imagens
    images : any[] = [];
+   _imgUrl = "http://mercado8.dlinkddns.com/images/a/";
+  constructor(public navCtrl: NavController, public navParams: NavParams,public modal: ModalController,public arvoreProvider:ArvoreProvider) {
+    // Lista de imagens criada a partir de um placeholder
+    this.arvoreProvider.getAll().subscribe(retorno => {
+      for (var i = 0; i < retorno.length; i++) {
+        var itens = retorno[i].fotos;
+        var urlImagens = this._imgUrl+retorno[i].user_id+'/'+retorno[i].id_arvore+'/';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public modal: ModalController) {
-    // Lista de imagens criada a partir de um placeholder, você deve substituir aqui pela sua lista que pode vir de um provider
-    for (var _i = 10; _i < 60; _i++) {
-      this.images.push({
-          id: _i,
-          image_path: 'https://picsum.photos/100/100?image=' + _i
-      })
-    }
+        for (var j = 0; j < itens.length; j++) {
+          this.images.push({
+              retorno: retorno[i],
+              id: itens[j].arvore_id,
+              image_path: urlImagens+itens[j].urlfoto
+          })
+          console.log(this.images);
+        }
+      }
+
+    },error=>{
+      console.log(error.error);
+      console.log(error.texte);
+
+    });
   }
 
-  /*ionViewDidLoad() {
-    console.log('ionViewDidLoad GaleryPage');
-  }*/
-  openModal(urlImage) {
+  openModal(objImg) {
 
       const myModalData = {
-        descricao: 'descricao da arvore',
-        url: urlImage
+        objImg: objImg,
+        url:this._imgUrl
       };
 
       const myModal: Modal = this.modal.create('ModalPage', { data: myModalData });
 
       myModal.present();
-
-      /*myModal.onDidDismiss((data) => {
-        console.log("I have dismissed.");
-        console.log(data);
-      });
-
-      myModal.onWillDismiss((data) => {
-        console.log("I'm about to dismiss");
-        console.log(data);
-      });*/
 
     }
 

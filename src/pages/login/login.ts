@@ -97,8 +97,6 @@ export class LoginPage {
 	}
 
 
-
-
 //método para chamar api do facebook e salvar no banco o usuario    
 loginFacebook() {
      let permissions = new Array<string>();

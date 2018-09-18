@@ -20,11 +20,11 @@
     <ion-img src="../../assets/imgs/arvore.jpg"></ion-img>
     <ion-item>
         <ion-label floating><ion-icon name="person"></ion-icon> Digite seu e-mail:</ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input type="email" [(ngModel)]="email"></ion-input>
         
     </ion-item>
     
-        <button ion-button full (click)="presentLoading()"><ion-icon name="send"></ion-icon> Enviar</button>
+        <button ion-button full (click)="RememberPassword()"><ion-icon name="send"></ion-icon> Enviar</button>
     
     
 </ion-content>

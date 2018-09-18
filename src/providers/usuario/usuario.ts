@@ -36,7 +36,19 @@ export class UsuarioProvider {
 		}
 	}
 
-	
+	/*
+		envia um formulario com os dados do usuario para cadastro
+	*/
+	createCustomer(data: IUsuario) {
+		console.log("Registrar");
+		console.log(data);
+		let url: string = this.basepath + "/user/create";
+
+		console.log(url);
+
+		return this.http.post<IUsuario>(url, data, { headers: this.headers });
+	}
+
 
 	loginCustomer(data: IUsuario) {
 		let url: string = this.basepath + "/login";
@@ -55,6 +67,18 @@ export class UsuarioProvider {
 		let url: string = this.basepath + "/user";
 
 		return this.http.get<IUsuario>(url,  { headers: this.headers });
+  }
+
+  EmailPassword(email:string){
+    let url:string = this.basepath + '/password/email';
+    this.headers = new HttpHeaders()
+			.set('Content-Type', 'application/json; charset=utf-8')
+			.set("cache-control", "no-cache")
+			.set("Access-Control-Allow-Origin", "*")
+      .set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      
+    return this.http.post(url,{email:email},{ headers: this.headers });
+    // return this.http.post<IUsuario>(url,  { headers: this.headers });
   }
   
   // ResetPassword(token:string){

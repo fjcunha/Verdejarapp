@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+import { UsuarioProvider } from '../../providers/usuario/usuario';
 
 
 /**
@@ -16,23 +17,47 @@ import { LoadingController } from 'ionic-angular';
   templateUrl: 'rememberpws.html',
 })
 export class RememberpwsPage {
+public email:string = "";
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public loadingCtrl: LoadingController,
+    private userProvider: UsuarioProvider,
+    private alertCtrl: AlertController) {
+  }
+  RememberPassword(){
+    console.log(this.email);
+    let loading = this.loadingCtrl.create();
+    loading.present();
+    this.userProvider.EmailPassword(this.email).subscribe((res:any)=>{
+      loading.dismiss();
+      if(res.token){
+        this.alertCtrl.create({
+          title:'Sucesso',
+          message:'O processo foi concluido com sucesso. <br /> Token: '+res.token,
+          buttons:['OK']
+        }).present();
+      }
+      console.log(res);
+    },(err)=>{
+      loading.dismiss();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController) {
+      console.log(err);
+    })
   }
   //função loading botão
-  presentLoading() {
+  // presentLoading() {
 
-    this.loadingCtrl.create({
+  //   this.loadingCtrl.create({
 
-      content: 'Please wait...',
+  //     content: 'Please wait...',
 
-      duration: 3000,
+  //     duration: 3000,
 
-      dismissOnPageChange: true
+  //     dismissOnPageChange: true
 
-    }).present();
+  //   }).present();
 
-  }
+  // }
   ionViewDidLoad() {
     console.log('ionViewDidLoad RememberpwsPage');
   }

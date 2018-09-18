@@ -74,32 +74,32 @@ export class NewaccountPage {
       this._customer.active = 1;
       this._customer.admin = 0;
       this.presentLoading();
-      // this.customerProvider.createCustomer(this._customer).subscribe(res => {
+      this.customerProvider.createCustomer(this._customer).subscribe(res => {
 
-      //   console.log("dentro do provider");
-      //     this._customer = res;
-      //     console.log(res);
-      //     if(res){
-      //       console.log("Registrado");
-      //       this.storageProvider.SetStorage('VerdejarUser', this._customer);
-      //       this.menuCtrl.enable(true, 'Auth');
-      //       this.menuCtrl.enable(false, 'NotAuth');
-      //       this.dismissLoading();
-      //       this.navCtrl.setRoot(HomePage);
-      //     }  
-      //     else{
+        console.log("dentro do provider");
+          this._customer = res;
+          console.log(res);
+          if(res){
+            console.log("Registrado");
+            this.storageProvider.SetStorage('VerdejarUser', this._customer);
+            this.menuCtrl.enable(true, 'Auth');
+            this.menuCtrl.enable(false, 'NotAuth');
+            this.dismissLoading();
+            this.navCtrl.setRoot('TabsPage');
+          }  
+          else{
 
-      //       this.dismissLoading();
-      //     }
+            this.dismissLoading();
+          }
 
-      //   },
-      //     erro => {
-      //       this.dismissLoading();
-      //       console.log(erro.message);
-      //       console.log(erro);
-      //       this.presentToast(erro.message, 'middle');
-      //   }
-      // )
+        },
+          erro => {
+            this.dismissLoading();
+            console.log(erro.message);
+            console.log(erro);
+            this.presentToast(erro.message, 'middle');
+        }
+      )
     }
     else{
      alert('Aceite os termos');

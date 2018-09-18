@@ -26,11 +26,3 @@ export class ModalPage {
 
   ionViewDidLoad() {
   }
-    /*closeModal() {
-        const data = {
-            name: 'John Doe',
-            occupation: 'Milkman'
-        };
-        this.view.dismiss(data);
-    }*/
-}

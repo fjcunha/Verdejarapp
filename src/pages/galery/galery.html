@@ -11,7 +11,7 @@
   <ion-grid>
       <ion-row>
           <ion-col col-4 *ngFor="let img of images">
-              <button ion-button (click)="openModal(img.image_path)">
+              <button ion-button (click)="openModal(img.retorno)">
                   <img src="{{img.image_path}}" >
               </button>
           </ion-col>

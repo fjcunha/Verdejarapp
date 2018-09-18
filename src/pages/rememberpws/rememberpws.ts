@@ -42,6 +42,13 @@ public email:string = "";
       loading.dismiss();
 
       console.log(err);
+      if(err.status == 401){
+        this.alertCtrl.create({
+          title:'Falha ao recuperar senha',
+          message:err.error.message,
+          buttons:['OK']
+        }).present();
+      }
     })
   }
   //função loading botão

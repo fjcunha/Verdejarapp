@@ -96,7 +96,7 @@ export class HomePage {
 		
 	}
 
-  	ionViewDidLoad() {
+  ionViewDidLoad() {
 		this.LoadUserInit();
   		this.LoadArvores();
   		this.LoadConfigs();

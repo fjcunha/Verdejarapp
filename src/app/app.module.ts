@@ -12,19 +12,20 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { NewtreePage } from '../pages/newtree/newtree';
+// import { NewtreePage } from '../pages/newtree/newtree';
 
 //PROVIDERS
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { ApoiadorProvider } from '../providers/apoiador/apoiador';
 import { ArvoreProvider } from '../providers/arvore/arvore';
 import { StorageProvider } from '../providers/storage/storage';
+import { ImagePicker } from '@ionic-native/image-picker';
 
 //importando pagina de nova senha
 @NgModule({
   declarations: [
-    MyApp,
-    NewtreePage
+    MyApp
+    
   ],
   imports: [
     BrowserModule,
@@ -34,8 +35,7 @@ import { StorageProvider } from '../providers/storage/storage';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    NewtreePage
+    MyApp
   ],
   providers: [
     StatusBar,
@@ -47,6 +47,7 @@ import { StorageProvider } from '../providers/storage/storage';
     StorageProvider,
     Camera,
     Geolocation,
+    ImagePicker,
     Facebook
   ]
 })

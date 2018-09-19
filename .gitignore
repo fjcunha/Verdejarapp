@@ -68,4 +68,4 @@ www/*
 .sourcemaps/*
 platforms/
 plugins/
-.vscode
+.vscode package-lock.json

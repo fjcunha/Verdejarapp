@@ -17,39 +17,57 @@
 
 <ion-content padding style="padding: 50px !important;">
   <!-- Logo -->
-  <div padding-horizontal text-center style="margin-top:20px;" >
-    <img style="max-width: 50%;" src="assets/imgs/arvore.jpg" />
-    <h2 ion-text style="margin-top:0;" class="text-primary">
-      <strong style="color:green;">Verdejar</strong>App
-    </h2>
+  <div padding-horizontal text-center style="margin-top:20px;">
+    <div class="content_item_logo">
+      <div class="item_logo">
+        <img class="img_logo" src="assets/imgs/logo_verdejar.png" />
+
+        <h2 ion-text style="margin-top:0;" class="text-primary">
+          <strong style="color:green;">
+            Verdejar
+          </strong>
+
+          App
+        </h2>
+      </div>
+    </div>
   </div>
-  
-    <!-- <ion-img src="../../assets/imgs/arvore.jpg"></ion-img> -->
+
+  <!-- <ion-img src="../../assets/imgs/logo_verdejar"></ion-img> -->
   <ion-list>
-      <ion-item>
-        <ion-label floating><ion-icon name="person"></ion-icon> E-mail:</ion-label>
-        <ion-input [(ngModel)]="_customer.email" type="email"></ion-input>
-      </ion-item>
-    
-      <ion-item>
-        <ion-label floating><ion-icon name="lock"></ion-icon> Senha:</ion-label>
-        <ion-input [(ngModel)]="_customer.password" type="password"></ion-input>
-      </ion-item>
-  </ion-list>       
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="person"></ion-icon> E-mail:
+      </ion-label>
+      <ion-input [(ngModel)]="_customer.email" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="lock"></ion-icon> Senha:
+      </ion-label>
+      <ion-input [(ngModel)]="_customer.password" type="password"></ion-input>
+    </ion-item>
+  </ion-list>
 
   <ion-list>
-      <p><a [navPush]="'RememberpwsPage'">Esqueci minha senha</a></p>
-      <button ion-button icon-end block (click)="login()" color="secondary">
-        Entrar
-        <ion-icon name="log-in"></ion-icon>
-      </button>
+    <p><a [navPush]="'RememberpwsPage'" style="color: #fff;">Esqueci minha senha</a></p>
+    <button ion-button icon-end block (click)="login()" color="secondary">
+      <span style="font-size: 18px; font-weight: 300; width: 125px;">
 
-      <button ion-button icon-left block (click)="loginFacebook()">
-        <ion-icon name="logo-facebook"></ion-icon> Entrar pelo FaceBook 
-      </button>
+        ENTRAR
+      </span>
+    </button>
 
-      <button ion-button icon-start block [navPush]="'NewaccountPage'" color="danger">
-        <ion-icon name="person-add"></ion-icon>Cadastrar
-      </button>
+    <!-- <button ion-button icon-left block (click)="loginFacebook()">
+      <ion-icon name="logo-facebook"></ion-icon> Entrar pelo FaceBook
+    </button> -->
+
+    <button ion-button icon-start block [navPush]="'NewaccountPage'" color="purple">
+      <span style="font-size: 18px; font-weight: 300; width: 125px;">
+
+        CADASTRAR
+      </span>
+    </button>
   </ion-list>
 </ion-content>

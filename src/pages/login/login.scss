@@ -25,4 +25,75 @@ page-login {
       }
     }
   }
+
+  .content {
+    background: url(../../assets/imgs/back_login_6.jpg) !important;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    background-size: cover !important;
+  }
+
+  .content_item_logo {
+    width: 225px;
+    height: 225px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0.2);
+  }
+
+  .item_logo {
+    padding-top: 5px;
+  }
+
+  .img_logo {
+    width: 175px;
+    height: auto;
+  }
+
+  .item-ios {
+    padding-left: 0;
+    border: 0;
+    border-bottom: 2px solid #fff !important;
+    border-radius: 0;
+    position: relative;
+    font-size: 20px;
+    font-weight: 300;
+    color: #ffffff;
+    background-color: transparent;
+    -webkit-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+  }
+
+  .list-ios>.item-block:first-child {
+    border-top: 0;
+  }
+
+  .list-ios>.item-block:last-child,
+  .list-ios>.item-wrapper:last-child .item-block {
+    border-bottom: 0;
+  }
+
+  .list-ios .item-block .item-inner {
+    border-bottom: 0;
+  }
+
+  .button-ios-secondary {
+    color: #fff;
+    background-color: rgba(41, 138, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.button-ios-purple {
+  color: #fff;
+  background-color: rgba(178, 0, 86, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.button-ios {
+  border-radius: 10px;
+  height: 3.5em;
+}
 }

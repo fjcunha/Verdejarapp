@@ -183,7 +183,7 @@ export class MapsPage {
 
     paginaNovaArvore(){
     
-    this.navCtrl.push(NewtreePage);
+      this.navCtrl.push('NewtreePage');
     }
 
 }

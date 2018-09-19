@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, ToastController, LoadingController } from 'ionic-angular';
+import { App,IonicPage, NavController, NavParams, MenuController, ToastController, LoadingController } from 'ionic-angular';
 import { IConfig } from '../../interfaces/IConfig';
 import { IArvore } from '../../interfaces/IArvore';
 import { StorageProvider } from '../../providers/storage/storage';
@@ -32,7 +32,7 @@ export class HomePage {
 
   	constructor(public navCtrl: NavController, public providerArvore: ArvoreProvider,
 			    public toastController: ToastController, public storageProvider: StorageProvider,
-			    public loadingCtrl: LoadingController, public menuCtrl: MenuController) {
+			    public loadingCtrl: LoadingController, public menuCtrl: MenuController, private app:App) {
 
  
 	}
@@ -52,7 +52,8 @@ export class HomePage {
 			else{
 				console.log("Não logado");
 				this.menuCtrl.enable(false, 'Auth');
-				this.menuCtrl.enable(true, 'NotAuth');
+        this.menuCtrl.enable(true, 'NotAuth');
+        this.app.getRootNav().setRoot('LoginPage');
 			}
 	    });
 

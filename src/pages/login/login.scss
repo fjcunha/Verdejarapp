@@ -25,7 +25,6 @@ page-login {
       }
     }
   }
-
   .content-login {
     background: url(../assets/imgs/back_login_6.jpg) !important;
     -webkit-background-size: cover !important;
@@ -96,8 +95,14 @@ page-login {
   border-radius: 10px;
   height: 3.5em;
 }
+.label-ios[floating]{
+  color: white!important;
+}
 
 // ANDROID
+.label-md[floating]{
+  color: white!important;
+}
 .item-md {
   padding-left: 0;
   border: 0;

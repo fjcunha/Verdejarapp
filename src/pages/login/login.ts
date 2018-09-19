@@ -29,19 +29,20 @@ export class LoginPage {
 		public storageProvider: StorageProvider, public toastController: ToastController,
         public loadingCtrl: LoadingController, private alertCtrl: AlertController, public facebook: Facebook
 		) {
-			this.storageProvider.GetStorage('VerdejarUser').then(val => {
-				if(val) {
-					this.presentLoading();
-					this.storageProvider.SetStorage('VerdejarUser', null);
-					this.menuCtrl.enable(false, 'auth');
-					this.menuCtrl.enable(true, 'unauth');
-					this.dismissLoading();
-					this.navCtrl.setRoot(LoginPage);
-				}	
-			})
+			// this.storageProvider.GetStorage('VerdejarUser').then(val => {
+			// 	if(val) {
+			// 		this.presentLoading();
+			// 		this.storageProvider.SetStorage('VerdejarUser', null);
+			// 		this.menuCtrl.enable(false, 'auth');
+			// 		this.menuCtrl.enable(true, 'unauth');
+			// 		this.dismissLoading();
+			// 		this.navCtrl.setRoot(LoginPage);
+			// 	}	
+			// })
 	}
 
-    ionViewDidLoad() {
+  ionViewDidLoad() {
+    this.menuCtrl.swipeEnable(false);
 	}
 
 	registerLink(param) {

@@ -26,8 +26,8 @@ page-login {
     }
   }
 
-  .content {
-    background: url(../../assets/imgs/back_login_6.jpg) !important;
+  .content-login {
+    background: url(../assets/imgs/back_login_6.jpg) !important;
     -webkit-background-size: cover !important;
     -moz-background-size: cover !important;
     -o-background-size: cover !important;
@@ -96,4 +96,52 @@ page-login {
   border-radius: 10px;
   height: 3.5em;
 }
+
+// ANDROID
+.item-md {
+  padding-left: 0;
+  border: 0;
+  border-bottom: 2px solid #fff !important;
+  border-radius: 0;
+  position: relative;
+  font-size: 20px;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: transparent;
+  -webkit-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+}
+
+.list-md>.item-block:first-child {
+  border-top: 0;
+}
+
+.list-md>.item-block:last-child,
+.list-md>.item-wrapper:last-child .item-block {
+  border-bottom: 0;
+}
+
+.list-md .item-block .item-inner {
+  border-bottom: 0;
+}
+
+.button-md-secondary {
+  color: #fff;
+  background-color: rgba(41, 138, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.button-md-purple {
+color: #fff;
+background-color: rgba(178, 0, 86, 0.5);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.button-md {
+border-radius: 10px;
+height: 3.5em;
+}
+
+
+
 }

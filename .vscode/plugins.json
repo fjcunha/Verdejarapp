@@ -1,1 +1,1 @@
-{"plugins":["cordova-plugin-geolocation","cordova-plugin-camera"]}
+{"plugins":["cordova-plugin-geolocation","cordova-plugin-camera","cordova-plugin-file-transfer","cordova-plugin-file","cordova-plugin-telerik-imagepicker"]}

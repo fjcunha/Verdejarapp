@@ -26,7 +26,7 @@ export class HomePage {
 	_customer:IUsuario;
 
 	loading;
-
+ 
 	_imgPaths = "http://mercado8.dlinkddns.com/verdejar/public/images/a/";
   
 

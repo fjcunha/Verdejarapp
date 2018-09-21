@@ -30,7 +30,7 @@ export class ArvoreProvider {
 			.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
 		if (this._platform.is("cordova")) {
-			this.basepath = "http://mercado8.dlinkddns.com/verdejar/public/api"
+			this.basepath = "http://api.verdejarfranca.com.br/api/"
 		}
 
 	}

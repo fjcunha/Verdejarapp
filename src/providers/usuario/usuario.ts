@@ -32,7 +32,7 @@ export class UsuarioProvider {
 			;
 
 		if (this._platform.is("cordova")) {
-			this.basepath = "http://api.verdejarfranca.com.br/api/"
+			this.basepath = "http://api.verdejarfranca.com.br/api"
 		}
 	}
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { IUsuario } from '../../interfaces/IUsuario';
 import { StorageProvider } from '../../providers/storage/storage';
+import { UsuarioProvider } from '../../providers/usuario/usuario';
 
 /**
  * Generated class for the MyTreesPage page.
@@ -21,7 +22,8 @@ export class MyTreesPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private storageProvider:StorageProvider,
-              private menuCtrl:MenuController) {
+              private menuCtrl:MenuController,
+              private customerProvider:UsuarioProvider) {
   }
 
   ionViewDidLoad() {
@@ -38,6 +40,7 @@ export class MyTreesPage {
         this.menuCtrl.enable(false, 'NotAuth');
 
         console.log(this._customer);
+        this.GetUserData(this._customer.token);
       }
       else{
         console.log("Não logado");
@@ -45,6 +48,26 @@ export class MyTreesPage {
         this.menuCtrl.enable(true, 'NotAuth');
       }
     });		
+  }
+  
+  GetUserData(token:string){
+		this.customerProvider.UserData(this._customer.token).subscribe(retorno => {
+				//Salva os dados dentro do banco de dados
+				this._customer = retorno;
+				this._customer.token = token;
+				this.storageProvider.SetStorage('VerdejarUser', this._customer);
+				this.menuCtrl.enable(true, 'auth');
+				this.menuCtrl.enable(false, 'unauth');
+				//this.dismissLoading();
+			//this.navCtrl.setRoot('TabsPage');
+			}
+			,
+			erro => {
+				//this.dismissLoading();
+				//this.presentToast(erro.error, 'middle');
+			}
+		
+		);
 	}
 
 }

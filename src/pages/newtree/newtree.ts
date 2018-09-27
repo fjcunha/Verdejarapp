@@ -237,17 +237,18 @@ export class NewtreePage {
   CreateTree(){
     this.tree.user_id = this.user.id;
     console.log(this.tree);
-
-    
-    
     this.arvoreProvider.createArvore(this.tree,this.user.token).subscribe(res=>{
       console.log(res);
       if(this.imgtree != ''){
         this.arvoreProvider.uploadFoto(this.tree.id_arvore,this.imgtree,this.user.token).subscribe(result=>{
-          console.log(result);
+          console.log(JSON.stringify(result));
+          this.navCtrl.setRoot('MyTreesPage');
         },err=>{
-          console.log(err);
+          console.log(JSON.stringify(err));
+          this.navCtrl.setRoot('MyTreesPage');
         })
+      }else{
+        this.navCtrl.setRoot('MyTreesPage');
       }
     },err=>{
       console.log(err);

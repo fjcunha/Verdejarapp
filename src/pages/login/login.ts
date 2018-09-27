@@ -90,6 +90,7 @@ export class LoginPage {
 	      this.dismissLoading();
 	    },
 	      erro => {
+          console.log(JSON.stringify(erro));
 	        this.dismissLoading();
 	        console.log(erro.text);
 	        this.presentToast(erro.error, 'middle');

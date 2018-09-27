@@ -6,6 +6,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation  } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 import { Facebook } from '@ionic-native/facebook';
+import { FileTransfer } from '@ionic-native/file-transfer';
+
 
 import { MyApp } from './app.component';
 
@@ -48,7 +50,8 @@ import { ImagePicker } from '@ionic-native/image-picker';
     Camera,
     Geolocation,
     ImagePicker,
-    Facebook
+    Facebook,
+    FileTransfer
   ]
 })
 export class AppModule {}

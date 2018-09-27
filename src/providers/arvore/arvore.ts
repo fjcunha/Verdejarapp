@@ -5,6 +5,7 @@ import { IArvore } from '../../interfaces/IArvore';
 import { IEspecie } from '../../interfaces/IEspecie';
 import { IFoto } from '../../interfaces/IFotos';
 import { IConfig } from '../../interfaces/IConfig';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import {Observable} from 'rxjs/Observable'
 import { Storage } from '@ionic/storage';
 
@@ -21,7 +22,7 @@ export class ArvoreProvider {
 
 	headers = new HttpHeaders();
 	token: string;
-	constructor(public http: HttpClient, private _platform: Platform) {
+	constructor(public http: HttpClient, private _platform: Platform, private transfer:FileTransfer) {
 
 		this.headers = new HttpHeaders()
 			.set('Content-Type', 'application/json; charset=utf-8')
@@ -58,12 +59,45 @@ export class ArvoreProvider {
 	}
 
 	getEspecieAll() {
-
 		let url: string = this.basepath + "/especie";
-
-		
-
 		return this.http.get<IEspecie[]>(url, { headers: this.headers });
+  }
+  
+  createArvore(arvore:IArvore, token:string){
+		this.headers = new HttpHeaders()
+			.set('Content-Type', 'application/json; charset=utf-8')
+			.set("cache-control", "no-cache")
+			.set("Access-Control-Allow-Origin", "*")
+			.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+			.set ("Authorization", "Bearer "+ token);
+
+			let url: string = this.basepath + "/arvore/create";
+
+			return this.http.post<IArvore>(url, arvore, { headers: this.headers});
+
+  }
+  
+  uploadFoto(id_arvore:number, imagem:string, token:string){
+		
+		const fileTransfer: FileTransferObject = this.transfer.create();
+		
+		let options: FileUploadOptions = {
+			fileKey : 'image[]',
+			fileName: imagem,
+			headers: {}
+		 }
+
+		this.headers = new HttpHeaders()
+			.set('Content-Type', 'application/json; charset=utf-8')
+			.set("cache-control", "no-cache")
+			.set("Access-Control-Allow-Origin", "*")
+			.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+			.set ("Authorization", "Bearer "+ token);
+
+			let url: string = this.basepath + "/arvore/foto/add/"+id_arvore;
+
+			return this.http.post<IFoto>(url, options, { headers: this.headers});
+
 	}
 
 

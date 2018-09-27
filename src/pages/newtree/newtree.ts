@@ -4,6 +4,11 @@ import { AlertController } from 'ionic-angular';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
+import { ArvoreProvider } from '../../providers/arvore/arvore';
+import { IEspecie } from '../../interfaces/IEspecie';
+import { IArvore } from '../../interfaces/IArvore';
+import { IUsuario } from '../../interfaces/IUsuario';
+import { StorageProvider } from '../../providers/storage/storage';
 
 /**
  * Generated class for the NewtreePage page.
@@ -19,16 +24,23 @@ declare var google;
   templateUrl: 'newtree.html',
 })
 export class NewtreePage {
-  especies: object[];
+  especies: IEspecie[];
+  public tree:IArvore = {};
+  public user:IUsuario = {};
+  public imgtree:string = '';
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
               public camera: Camera, private geolocation: Geolocation,
               private loadingCtrl:LoadingController ,
-              private imagePicker:ImagePicker) {
+              private imagePicker:ImagePicker,
+              private arvoreProvider: ArvoreProvider,
+              private storageProvider:StorageProvider,
+              ) {
   }
 
 
   upload(URIimage, fileName) {
+    
     let loading = this.loadingCtrl.create();
     loading.present();
     // this.userService.Upload(URIimage, fileName).then(res => {
@@ -71,6 +83,7 @@ export class NewtreePage {
     };
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
+      this.imgtree = imageData;
       // If it's base64:
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       //this.user.profileImg = imageData;
@@ -101,6 +114,7 @@ export class NewtreePage {
   }
 
   changePicture() {
+    // this.imgtree = 'assets/imgs/arvore.jpg';
     let alert = this.alertCtrl.create({
       title: 'Escolher Foto da árvore',
       buttons: [
@@ -152,8 +166,8 @@ export class NewtreePage {
 
   ionViewDidLoad() {
     this.initializeEspecies();
+    this.LoadUserInit();
     this.showConfirm();
-    console.log('ionViewDidLoad NewtreePage');
   }
 
   voltarPagina(){
@@ -180,17 +194,26 @@ export class NewtreePage {
 
   }
 
+  public LoadUserInit(){
+		
+		console.log("Load User");
+
+		this.storageProvider.GetStorage('VerdejarUser').then(user=>{
+	    this.user = user;
+    });
+
+		
+	}
+
   //tentando pegar os itens do select
   initializeEspecies() {
-    var  esp = {};
-    this.especies = [
-        esp = {key: 1, especie:"especie 1"},
-        esp = {key: 2, especie:"especie 2"},
-        esp = {key: 3, especie:"especie 3"},
-        esp = {key: 4, especie:"especie 4"},
-        esp = {key: 5, especie:"especie 5"},
+    this.arvoreProvider.getEspecieAll().subscribe(res=>{
+      console.log(res);
+      this.especies = res;
+    },err=>{
+      console.log(err);
+    })
     
-    ];
   }
   ///essa daqui acho que não vai ter utilização agora
   getItemsSelect(){
@@ -200,33 +223,54 @@ export class NewtreePage {
 
   //pegar a localização para salvar a arvore 
   getLocalizacao(){
-      debugger
+      // debugger
       this.geolocation.getCurrentPosition().then((resp) => {
+        this.tree.latitude = ''+resp.coords.latitude;
+        this.tree.longitude = ''+resp.coords.longitude;
           // resp.coords.latitude;
           // resp.coords.longitude
       }).catch((error) => {
         console.log('Error getting location', error);
       });
   }
-}////
-function camera() {
-  const options: CameraOptions = {
-    quality: 100,
-    destinationType: this.camera.DestinationType.FILE_URI,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
+
+  CreateTree(){
+    this.tree.user_id = this.user.id;
+    console.log(this.tree);
+
+    
+    
+    this.arvoreProvider.createArvore(this.tree,this.user.token).subscribe(res=>{
+      console.log(res);
+      if(this.imgtree != ''){
+        this.arvoreProvider.uploadFoto(this.tree.id_arvore,this.imgtree,this.user.token).subscribe(result=>{
+          console.log(result);
+        },err=>{
+          console.log(err);
+        })
+      }
+    },err=>{
+      console.log(err);
+    })
   }
-  
-  this.camera.getPicture(options).then((imageData) => {
-   // imageData is either a base64 encoded string or a file URI
-   // If it's base64 (DATA_URL):
-   let base64Image = 'data:image/jpeg;base64,' + imageData;
-  }, (err) => {
-   // Handle error
-  });
 
+}////
+// function camera() {
+//   const options: CameraOptions = {
+//     quality: 100,
+//     destinationType: this.camera.DestinationType.FILE_URI,
+//     encodingType: this.camera.EncodingType.JPEG,
+//     mediaType: this.camera.MediaType.PICTURE
+//   }
   
+//   this.camera.getPicture(options).then((imageData) => {
+//    // imageData is either a base64 encoded string or a file URI
+//    // If it's base64 (DATA_URL):
+//    let base64Image = 'data:image/jpeg;base64,' + imageData;
+//   }, (err) => {
+//    // Handle error
+//   });
+// }
 
-  
-}
+
 

@@ -19,9 +19,12 @@
   <ion-list>
     <ion-item>
       <ion-label>Escolha a especie</ion-label>
-      <ion-select [(ngModel)]="escepies" cancelText="Cancelar">
-        <ion-option *ngFor="let esp of especies" value={{esp.key}}>{{esp.especie}}</ion-option>
+      <ion-select [(ngModel)]="tree.especie_id" cancelText="Cancelar">
+        <ion-option *ngFor="let esp of especies" value={{esp.id_especie}}>{{esp.nome}}</ion-option>
       </ion-select>
+    </ion-item>
+    <ion-item>
+      <img [src]="imgtree" style="width:100%;" />
     </ion-item>
   </ion-list>
       
@@ -29,5 +32,5 @@
       <ion-icon name="camera"></ion-icon>
       Tirar foto
   </button>
-  <button ion-button block  > Cadastrar árvore  </button>
+  <button ion-button block (click)="CreateTree()" > Cadastrar árvore  </button>
 </ion-content>

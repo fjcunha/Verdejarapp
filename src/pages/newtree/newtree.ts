@@ -102,6 +102,7 @@ export class NewtreePage {
       height: 500
     };
     this.imagePicker.getPictures(options).then((results) => {
+      this.imgtree = results[0];
       for (var i = 0; i < results.length; i++) {
         console.log('Image URI: ' + results[i]);
         // this.user.profileImg = results[i];
@@ -237,13 +238,23 @@ export class NewtreePage {
   CreateTree(){
     this.tree.user_id = this.user.id;
     console.log(this.tree);
+    let loading = this.loadingCtrl.create();
+    loading.present();
     this.arvoreProvider.createArvore(this.tree,this.user.token).subscribe(res=>{
-      console.log(res);
+      loading.dismiss();
+
+      console.log(JSON.stringify(res));
       if(this.imgtree != ''){
-        this.arvoreProvider.uploadFoto(this.tree.id_arvore,this.imgtree,this.user.token).subscribe(result=>{
+        let loadUpload = this.loadingCtrl.create({content:'Upload de foto'});
+        loadUpload.present();
+        this.arvoreProvider.uploadFoto(res.id_arvore,this.imgtree,this.user.token).subscribe(result=>{
+          loadUpload.dismiss();
+
           console.log(JSON.stringify(result));
           this.navCtrl.setRoot('MyTreesPage');
         },err=>{
+          loadUpload.dismiss();
+
           console.log(JSON.stringify(err));
           this.navCtrl.setRoot('MyTreesPage');
         })
@@ -251,6 +262,7 @@ export class NewtreePage {
         this.navCtrl.setRoot('MyTreesPage');
       }
     },err=>{
+      loading.dismiss();
       console.log(err);
     })
   }

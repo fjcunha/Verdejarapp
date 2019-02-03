@@ -24,14 +24,14 @@ export class GaleryPage {
     // Lista de imagens criada a partir de um placeholder
     this.arvoreProvider.getAll().subscribe(retorno => {
       for (var i = 0; i < retorno.length; i++) {
-        var itens = retorno[i].fotos;
-        var urlImagens = this._imgUrl+retorno[i].user_id+'/'+retorno[i].id_arvore+'/';
+        var itens = retorno[i].Photos;
+        var urlImagens = this._imgUrl+retorno[i].UserID+'/'+retorno[i].TreeID+'/';
 
         for (var j = 0; j < itens.length; j++) {
           this.images.push({
               retorno: retorno[i],
-              id: itens[j].arvore_id,
-              image_path: urlImagens+itens[j].urlfoto
+              id: itens[j].TreeID,
+              image_path: urlImagens+itens[j].Url
           })
           console.log(this.images);
         }

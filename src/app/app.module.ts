@@ -22,6 +22,7 @@ import { ApoiadorProvider } from '../providers/apoiador/apoiador';
 import { ArvoreProvider } from '../providers/arvore/arvore';
 import { StorageProvider } from '../providers/storage/storage';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { ApiUrlProvider } from '../providers/api-url/api-url';
 
 //importando pagina de nova senha
 @NgModule({
@@ -51,7 +52,8 @@ import { ImagePicker } from '@ionic-native/image-picker';
     Geolocation,
     ImagePicker,
     Facebook,
-    FileTransfer
+    FileTransfer,
+    ApiUrlProvider
   ]
 })
 export class AppModule {}

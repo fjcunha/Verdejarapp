@@ -1,16 +1,20 @@
 import { IEspecie } from './IEspecie';
 import { IFoto } from './IFotos';
+import { IUsuario } from './IUsuario';
+import { Status } from './enums/Status.enum';
 
 export interface IArvore {
-    id_arvore?:  number;
-    user_id?:    number;
-    latitude?:   string;
-    longitude?:  string;
-    especie_id?: number;
-    updated_at?: string;
-    created_at?: string;
-    fotos?:      IFoto[];
-    especie?:    IEspecie;
+  TreeID:number;
+  Latitude:string;
+  Longitude:string;
+  //Foreing key
+  UserID:number;
+  User:IUsuario;
+  SpecieID:number;
+  Specie:IEspecie;
+  Status:Status;
+  Photos:IFoto[];
+  
 }
 
 

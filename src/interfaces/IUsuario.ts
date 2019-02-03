@@ -1,20 +1,16 @@
-import { IEspecie } from './IEspecie';
 import { IFoto } from './IFotos';
 import { IArvore } from './IArvore';
+import { UserType } from './enums/UserType.enum';
+import { Status } from './enums/Status.enum';
 
 export interface IUsuario {
-    id?:       number;
-    name?:       string;
-    email?:      string;
-    password?:	 string;
-    phone?:      string;
-    picture?:    string;
-    admin?:      number;
-    created_at?: string;
-    updated_at?: string;
-    active?:     number;
-    arvore?:     IArvore[];
-    // comentario?: any[];
-    token?:		 string;
+  UserID?:number;
+  Name?:string;
+  Email?:string;
+  Password?:string;
+  Type?:UserType;
+  Status?:Status;
+  Photos?:IFoto[];
+  Trees?:IArvore[];
 }
 

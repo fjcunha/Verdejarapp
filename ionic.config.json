@@ -6,9 +6,13 @@
     "cordova": {}
   },
   "proxies": [
-  	{
-  		"path": "/Api",
-  		"proxyUrl": "http://api.verdejarfranca.com.br/api/"
+    {
+      "path": "/api",
+      "proxyUrl": "http://localhost/verdejarweb/api/"
+    },
+    {
+      "path": "/prodapi",
+      "proxyUrl": "http://intelprog-001-site3.btempurl.com/api/"
     }
   ]
 }

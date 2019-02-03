@@ -1,9 +1,16 @@
+import { Status } from "./enums/Status.enum";
+import { IUsuario } from "./IUsuario";
+import { IArvore } from "./IArvore";
+
 export interface IFoto {
-    id_foto?:    number;
-    urlfoto?:    string;
-    arvore_id?:  number;
-    user_id?:    number;
-    ativa?:      number;
-    updated_at?: string;
-    created_at?: string;
+  PhotoID:number;
+  Url:string;
+  Status:Status;
+
+  //Foreign Keys
+  UserID:number;
+  User:IUsuario;
+
+  TreeID:number;
+  Tree:IArvore;
 }

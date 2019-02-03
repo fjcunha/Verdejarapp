@@ -3,7 +3,7 @@ import { IFoto } from './IFotos';
 import { IArvore } from './IArvore';
 
 export interface IUsuario {
-      id?:       number;
+    id?:       number;
     name?:       string;
     email?:      string;
     password?:	 string;
@@ -14,7 +14,7 @@ export interface IUsuario {
     updated_at?: string;
     active?:     number;
     arvore?:     IArvore[];
-   // comentario?: any[];
-   token?:		 string;
+    // comentario?: any[];
+    token?:		 string;
 }
 

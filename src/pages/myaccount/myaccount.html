@@ -19,7 +19,7 @@
 <ion-content padding>
 
     <ion-card>
-        
+
         <ion-card-content>
           <ion-card-title>
            {{userInfos?.name}}
@@ -28,15 +28,15 @@
         <ion-item>
             <ion-label stacked>Nome Completo</ion-label>
             <ion-input [(ngModel)]="userInfos.name" [disabled]="minhaContaAlterarInput" type="text" placeholder="Nome Completo"></ion-input>
-        </ion-item> 
+        </ion-item>
         <ion-item>
             <ion-label stacked>Email</ion-label>
             <ion-input [(ngModel)]="userInfos.email" [disabled]="minhaContaAlterarInput" type="email" placeholder="Email"></ion-input>
-        </ion-item> 
+        </ion-item>
         <ion-item>
             <ion-label stacked>Telefone</ion-label>
             <ion-input [(ngModel)]="userInfos.phone" [disabled]="minhaContaAlterarInput" type="text" placeholder="(DD) Telefone"></ion-input>
-        </ion-item>  
+        </ion-item>
         <ion-item *ngIf="userInfos.arvore">
           <ion-icon name='flower' item-start style="color: #008000"></ion-icon>
           Arvores
@@ -48,23 +48,23 @@
             <ion-badge item-end>{{userInfos?.arvore?.fotos.length}}</ion-badge>
           </ion-item>
 
-        
+
         </ion-item>
 
-        <ion-item *ngIf="!userInfos.arvore">
+        <ion-item>
           <ion-icon name='flower' item-start style="color: #008000"></ion-icon>
-          
-            <button ion-button outline item-end icon-start>
+
+            <button ion-button outline item-end icon-start (click)="openNovaArvore()">
                 <ion-icon name="plus"></ion-icon>
                 Cadastre sua arvore
             </button>
-          
-          
+
+
         </ion-item>
 
-        
 
-        <ion-item > 
+
+        <ion-item >
             <button ion-button outline item-end icon-start (click)="AtivarInput()" *ngIf="minhaContaBotaoAlterarMostrar">
                 <ion-icon name="filing"></ion-icon>
                 Alterar
@@ -73,7 +73,7 @@
                 <ion-icon name="filing"></ion-icon>
                 Salvar
             </button>
-        </ion-item>        
+        </ion-item>
       </ion-card>
 
 

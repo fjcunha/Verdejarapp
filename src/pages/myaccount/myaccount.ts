@@ -19,10 +19,10 @@ export class MyaccountPage {
   public minhaContaAlterarInput:boolean = true;
   public minhaContaBotaoAlterarMostrar:boolean = true;
   public minhaContaBotaoSalvarMostrar:boolean = false;
-  
+
   userInfos: IUsuario = {arvore : []};
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private storageProvider:StorageProvider
               , public menuCtrl: MenuController) {
@@ -43,17 +43,17 @@ export class MyaccountPage {
       this.minhaContaBotaoAlterarMostrar = true;
       this.minhaContaBotaoSalvarMostrar = false;
     }
-    
+
   }
 
   ionViewWillEnter() {
 
     this.LoadUserInit();
-   
+
   }
 
   public LoadUserInit(){
-    
+
     console.log("Load User");
 
     this.storageProvider.GetStorage('VerdejarUser').then(user=>{
@@ -67,9 +67,13 @@ export class MyaccountPage {
         console.log("Não logado");
         this.navCtrl.setRoot('LoginPage');
       }
+      console.log(this.userInfos.arvore);
       });
 
-    
+
   }
 
+  public openNovaArvore() {
+    this.navCtrl.setRoot('NewtreePage');
+  }
 }

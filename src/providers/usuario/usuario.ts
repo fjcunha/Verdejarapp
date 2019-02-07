@@ -38,11 +38,11 @@ export class UsuarioProvider {
 	createCustomer(data: IUsuario) {
 		console.log("Registrar");
 		console.log(data);
-		let url: string = this.APIURL + "login";
+		let url: string = this.APIURL + "users/";
 
 		console.log(url);
 
-		return this.http.post<IUsuario>(url, data, { headers: this.headers });
+		return this.http.post<any>(url, data, { headers: this.headers });
 	}
 
 

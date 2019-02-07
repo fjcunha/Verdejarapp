@@ -7,6 +7,8 @@ import { StorageProvider } from '../../providers/storage/storage';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
+import { Status } from '../../interfaces/enums/Status.enum';
+import { UserType } from '../../interfaces/enums/UserType.enum';
 
 /**
  * Generated class for the NewaccountPage page.
@@ -23,11 +25,9 @@ import { LoginPage } from '../login/login';
 
 export class NewaccountPage {
   //cadastro : any = {};
-  _customer: IUsuario = {
-		email: '',
-		password: '',
-		token: '',
-		picture:''
+  user: IUsuario = {
+		Email: '',
+		Password: '',
   };
   
   confirmPassword:string = "";
@@ -71,26 +71,23 @@ export class NewaccountPage {
 
     console.log("register");
     if(this._termos && this.verifyPass ){
-      this._customer.active = 1;
-      this._customer.admin = 0;
+      this.user.Status = Status.ATIVO;
+      this.user.Type = UserType.USUARIO; 
       this.presentLoading();
-      this.customerProvider.createCustomer(this._customer).subscribe(res => {
+      this.customerProvider.createCustomer(this.user).subscribe(res => {
+        this.dismissLoading();
 
-        console.log("dentro do provider");
-          this._customer = res;
+        if(res.status == 'error'){
+          this.presentToast(res.message, 'middle');
+        }else{
+          this.user = res;
           console.log(res);
-          if(res){
-            console.log("Registrado");
-            this.storageProvider.SetStorage('VerdejarUser', this._customer);
-            this.menuCtrl.enable(true, 'Auth');
-            this.menuCtrl.enable(false, 'NotAuth');
-            this.dismissLoading();
-            this.navCtrl.setRoot('TabsPage');
-          }  
-          else{
-
-            this.dismissLoading();
-          }
+          this.storageProvider.SetStorage('VerdejarUser', this.user);
+          this.menuCtrl.enable(true, 'Auth');
+          this.menuCtrl.enable(false, 'NotAuth');
+          this.dismissLoading();
+          this.navCtrl.setRoot('TabsPage');
+        }
 
         },
           erro => {
@@ -122,11 +119,11 @@ export class NewaccountPage {
 
   public confirm(){
     
-    console.log("Senha: " + this._customer.password + " - Confirm: "+ this.confirmPassword);
+    console.log("Senha: " + this.user.Password + " - Confirm: "+ this.confirmPassword);
 
-    if(this._customer.password == this.confirmPassword){
+    if(this.user.Password == this.confirmPassword){
       
-      if(this._customer.password.length < 5){
+      if(this.user.Password.length < 5){
         this.showAlert("A senha deve conterno mínimo 5 dígitos!","Senha incompatível");
         return this.verifyPass = false;
       }

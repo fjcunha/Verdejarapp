@@ -24,7 +24,7 @@
             <ion-col col-12 >
               <ion-item>
                 <ion-label floating>Nome:</ion-label>
-                <ion-input type="text" required [(ngModel)]="_customer.name"></ion-input>
+                <ion-input type="text" required [(ngModel)]="user.Name"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -32,7 +32,7 @@
             <ion-col col-12>
               <ion-item>
                 <ion-label floating>E-mail:</ion-label>
-                <ion-input type="mail" required [(ngModel)]="_customer.email" ></ion-input>
+                <ion-input type="mail" required [(ngModel)]="user.Email" ></ion-input>
               </ion-item>
             </ion-col>
             
@@ -41,7 +41,7 @@
             <ion-col col-12>
                 <ion-item>
                   <ion-label floating>Telefone:</ion-label>
-                  <ion-input type="text" required [(ngModel)]="_customer.phone"></ion-input>
+                  <ion-input type="text" required [(ngModel)]="user.Phone"></ion-input>
               </ion-item>
             </ion-col>   
           </ion-row>
@@ -50,7 +50,7 @@
               <ion-col col-12>
                   <ion-item>
                     <ion-label floating>Senha:</ion-label>
-                    <ion-input type="password" aria-required="true" [(ngModel)]="_customer.password"></ion-input>
+                    <ion-input type="password" aria-required="true" [(ngModel)]="user.Password"></ion-input>
                 </ion-item>
               </ion-col>
               <ion-col col-12>

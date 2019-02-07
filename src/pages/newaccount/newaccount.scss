@@ -1,3 +1,210 @@
 page-newaccount {
+  .list-form {
+    padding: 0;
+    margin-bottom: 0;
 
+    ion-item {
+      background: none;
+      padding: 0;
+
+      &:first-child {
+        border-top: none;
+      }
+
+      &:after {
+        display: none;
+      }
+
+      ion-label {
+        font-size: 1em;
+        color: color($colors, primary);
+      }
+
+      input {
+        color: color($colors, primary);
+      }
+    }
+  }
+
+  .content-login {
+    background: url(../assets/imgs/back_login_6.jpg) !important;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    background-size: cover !important;
+  }
+
+  .content_item_logo {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0.2);
+  }
+
+  .item_logo {
+    padding-top: 5px;
+  }
+
+  .img_logo {
+    width: 150px;
+    height: auto;
+  }
+
+  .item-ios {
+    padding-left: 0;
+    border: 0;
+    border-bottom: 1px solid #fff !important;
+    border-radius: 0;
+    position: relative;
+    font-size: 20px;
+    font-weight: 300;
+    color: #ffffff;
+    background-color: transparent;
+    -webkit-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+  }
+
+  .list-ios>.item-block:first-child {
+    border-top: 0;
+  }
+
+  .list-ios>.item-block:last-child,
+  .list-ios>.item-wrapper:last-child .item-block {
+    border-bottom: 0;
+  }
+
+  .list-ios .item-block .item-inner {
+    border-bottom: 0;
+  }
+
+  .button-ios-secondary {
+    color: #fff;
+    background-color: rgba(41, 138, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .button-ios-purple {
+    color: #fff;
+    background-color: rgba(178, 0, 86, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .button-ios {
+    border-radius: 10px;
+    height: 3.5em !important;
+  }
+
+  .label-ios[floating] {
+    color: white !important;
+  }
+
+  // ANDROID
+  .label-md[floating] {
+    color: white !important;
+  }
+
+  .item-md {
+    padding-left: 0;
+    border: 0;
+    border-bottom: 1px solid #fff !important;
+    border-radius: 0;
+    position: relative;
+    font-size: 20px;
+    font-weight: 300;
+    color: #ffffff;
+    background-color: transparent;
+    -webkit-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+  }
+
+  .list-md>.item-block:first-child {
+    border-top: 0;
+  }
+
+  .list-md>.item-block:last-child,
+  .list-md>.item-wrapper:last-child .item-block {
+    border-bottom: 0;
+  }
+
+  .list-md .item-block .item-inner {
+    border-bottom: 0;
+  }
+
+  .button-md-secondary {
+    color: #fff;
+    background-color: rgba(41, 138, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .button-md-purple {
+    color: #fff;
+    background-color: rgba(178, 0, 86, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .button-md {
+    border-radius: 10px;
+    height: 3.5em !important;
+  }
+
+  .toolbar-background-ios {
+    background: rgba(255, 255, 255, 0);
+  }
+
+  .toolbar-background-md {
+    background: rgba(255, 255, 255, 0);
+  }
+
+  .back-button-text-ios {
+    letter-spacing: -.01em;
+    display: none;
+  }
+
+  .back-button-text-md {
+    letter-spacing: -.01em;
+    display: none;
+  }
+
+  .bar-button-default-ios,
+  .bar-button-default.bar-button-ios-default,
+  .bar-button-clear-ios-default {
+    color: #ffffff;
+    background-color: transparent;
+  }
+
+  .bar-button-default-md,
+  .bar-button-default.bar-button-md-default,
+  .bar-button-clear-md-default {
+    color: #ffffff;
+    background-color: transparent;
+  }
+
+  .toolbar-title-ios {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 300;
+    color: #fff;
+    pointer-events: auto;
+  }
+
+  .toolbar-title-md {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 300;
+    color: #fff;
+    pointer-events: auto;
+  }
+
+  .checkbox-ios .checkbox-checked {
+    border-color: #b20056;
+    background-color: #b20056;
+  }
+
+  .checkbox-md .checkbox-checked {
+    border-color: #b20056;
+    background-color: #b20056;
+  }
 }

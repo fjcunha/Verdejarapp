@@ -10,79 +10,107 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><ion-icon name="person-add"></ion-icon> Nova Conta</ion-title>
+    <ion-title> Nova Conta</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="content-login">
+  <ion-grid>
+    <ion-list>
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label floating>Nome:</ion-label>
+            <ion-input type="text" required [(ngModel)]="user.Name"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label floating>E-mail:</ion-label>
+            <ion-input type="mail" required [(ngModel)]="user.Email"></ion-input>
+          </ion-item>
+        </ion-col>
 
-    <ion-grid>
-        <ion-list>
-          <ion-row>
-            <ion-col col-12 >
-              <ion-item>
-                <ion-label floating>Nome:</ion-label>
-                <ion-input type="text" required [(ngModel)]="user.Name"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-          <ion-row>  
-            <ion-col col-12>
-              <ion-item>
-                <ion-label floating>E-mail:</ion-label>
-                <ion-input type="mail" required [(ngModel)]="user.Email" ></ion-input>
-              </ion-item>
-            </ion-col>
-            
-          </ion-row>
-          <ion-row>  
-            <ion-col col-12>
-                <ion-item>
-                  <ion-label floating>Telefone:</ion-label>
-                  <ion-input type="text" required [(ngModel)]="user.Phone"></ion-input>
-              </ion-item>
-            </ion-col>   
-          </ion-row>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label floating>Telefone:</ion-label>
+            <ion-input type="text" required [(ngModel)]="user.Phone"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
 
-          <ion-row>  
-              <ion-col col-12>
-                  <ion-item>
-                    <ion-label floating>Senha:</ion-label>
-                    <ion-input type="password" aria-required="true" [(ngModel)]="user.Password"></ion-input>
-                </ion-item>
-              </ion-col>
-              <ion-col col-12>
-                  <ion-item>
-                    <ion-label floating>Repetir senha:</ion-label>
-                    <ion-input type="password" aria-required="true" [(ngModel)]="confirmPassword" (ionBlur)="confirm()"></ion-input>
-                </ion-item>
-              </ion-col>   
-            </ion-row>
-            <ion-row>  
-              <ion-col col-12>
-                  <ion-item>
-                    <ion-label>Aceitar termos</ion-label>
-                    <ion-checkbox color="secundary" aria-required="true" [ngModel]="_termor" (ionChange)="Termos()" required checked="false"></ion-checkbox>
-                    <p><a (click)="showTermos()">Ler os termos de uso</a></p>
-                </ion-item>
-                <ion-item>
-                    <ion-label (click)="showTermos()">Ler os termos de uso</ion-label>
-                </ion-item>
-              </ion-col>  
-            </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label floating>Senha:</ion-label>
+            <ion-input type="password" aria-required="true" [(ngModel)]="user.Password"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label floating>Repetir senha:</ion-label>
+            <ion-input type="password" aria-required="true" [(ngModel)]="confirmPassword" (ionBlur)="confirm()"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label>Aceitar termos</ion-label>
+            <ion-checkbox color="secundary" aria-required="true" [ngModel]="_termor" (ionChange)="Termos()" required
+              checked="false"></ion-checkbox>
+            <p><a (click)="showTermos()">Ler os termos de uso</a></p>
+          </ion-item>
+          <ion-item>
+            <ion-label (click)="showTermos()">Ler os termos de uso</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
 
-            <ion-item *ngIf="verifyPass">
-              
-              <button ion-button icon-end block (click)="register();" color="secondary">
-                Salvar
-                <ion-icon name="log-in"></ion-icon>
-              </button>
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label floating>Senha:</ion-label>
+            <ion-input type="password" aria-required="true" [(ngModel)]="_customer.password"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label floating>Repetir senha:</ion-label>
+            <ion-input type="password" aria-required="true" [(ngModel)]="confirmPassword" (ionBlur)="confirm()"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label>Aceitar termos</ion-label>
+            <ion-checkbox color="secundary" aria-required="true" [ngModel]="_termor" (ionChange)="Termos()" required
+              checked="false"></ion-checkbox>
+            <p><a (click)="showTermos()">Ler os termos de uso</a></p>
+          </ion-item>
+          <ion-item>
+            <ion-label (click)="showTermos()">Ler os termos de uso</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
 
-            </ion-item>
-        </ion-list>  
-      </ion-grid>    
+      <ion-item *ngIf="verifyPass" style="border-bottom: 0 !important;">
+        <button ion-button icon-end block (click)="register();" color="secondary">
+          <span style="font-size: 18px; font-weight: 300; width: 125px;">
+
+            SALVAR
+          </span>
+        </button>
+
+      </ion-item>
+    </ion-list>
+  </ion-grid>
 
 </ion-content>
-

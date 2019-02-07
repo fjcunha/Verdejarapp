@@ -7,14 +7,17 @@ export interface IArvore {
   TreeID:number;
   Latitude:string;
   Longitude:string;
+  Status:Status;
+
   //Foreing key
   UserID:number;
   User:IUsuario;
+
   SpecieID:number;
   Specie:IEspecie;
-  Status:Status;
+
   Photos:IFoto[];
-  
+
 }
 
 

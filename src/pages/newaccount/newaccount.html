@@ -73,34 +73,6 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
-        <ion-col col-12>
-          <ion-item>
-            <ion-label floating>Senha:</ion-label>
-            <ion-input type="password" aria-required="true" [(ngModel)]="_customer.password"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col col-12>
-          <ion-item>
-            <ion-label floating>Repetir senha:</ion-label>
-            <ion-input type="password" aria-required="true" [(ngModel)]="confirmPassword" (ionBlur)="confirm()"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-12>
-          <ion-item>
-            <ion-label>Aceitar termos</ion-label>
-            <ion-checkbox color="secundary" aria-required="true" [ngModel]="_termor" (ionChange)="Termos()" required
-              checked="false"></ion-checkbox>
-            <p><a (click)="showTermos()">Ler os termos de uso</a></p>
-          </ion-item>
-          <ion-item>
-            <ion-label (click)="showTermos()">Ler os termos de uso</ion-label>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-
       <ion-item *ngIf="verifyPass" style="border-bottom: 0 !important;">
         <button ion-button icon-end block (click)="register();" color="secondary">
           <span style="font-size: 18px; font-weight: 300; width: 125px;">

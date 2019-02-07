@@ -42,12 +42,12 @@ export class HomePage {
 		console.log("Load User");
 
 		this.storageProvider.GetStorage('VerdejarUser').then(user=>{
-	      	if(user != null) {
+      if(user != null) {
 
-	      			console.log('Logado');
-					this._customer = user;
-					this.menuCtrl.enable(true, 'Auth');
-					this.menuCtrl.enable(false, 'NotAuth');
+        console.log('Logado');
+        this._customer = user;
+        this.menuCtrl.enable(true, 'Auth');
+        this.menuCtrl.enable(false, 'NotAuth');
 			}
 			else{
 				console.log("Não logado");
@@ -67,7 +67,7 @@ export class HomePage {
 		this.providerArvore.getConfig().subscribe(retorno => {
 			console.log(retorno);
 					//Salva os dados dentro do banco de dados
-					this._confgis = retorno;
+					this._confgis = retorno[0];
 					this.storageProvider.SetStorage('VerdejarConfigs', this._confgis);
 				}
 				,error=>{

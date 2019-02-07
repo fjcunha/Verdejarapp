@@ -107,7 +107,7 @@ export class MapsPage {
             }); 
             
             var locations = this._arvores.map(element=>{
-              return {lat: parseFloat(element.latitude),lng:parseFloat(element.longitude)}
+              return {lat: parseFloat(element.Latitude),lng:parseFloat(element.Longitude)}
             });
             console.log(locations);
     

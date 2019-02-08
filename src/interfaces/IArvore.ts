@@ -4,19 +4,19 @@ import { IUsuario } from './IUsuario';
 import { Status } from './enums/Status.enum';
 
 export interface IArvore {
-  TreeID:number;
-  Latitude:string;
-  Longitude:string;
-  Status:Status;
+  TreeID?:number;
+  Latitude?:string;
+  Longitude?:string;
+  Status?:Status;
 
   //Foreing key
-  UserID:number;
-  User:IUsuario;
+  UserID?:number;
+  User?:IUsuario;
 
-  SpecieID:number;
-  Specie:IEspecie;
+  SpecieID?:number;
+  Specie?:IEspecie;
 
-  Photos:IFoto[];
+  Photos?:IFoto[];
 
 }
 

@@ -51,7 +51,7 @@ export class UsuarioProvider {
 		return this.http.post<any>(url, data, { headers: this.headers });
 	}
 
-	UserData(userId: string) {
+	UserData(userId: number) {
 		this.headers = new HttpHeaders()
 			.set("X-CustomHeader", "custom header value")
 			.set('Content-Type', 'application/json; charset=utf-8')

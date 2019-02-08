@@ -226,8 +226,8 @@ export class NewtreePage {
   getLocalizacao(){
       // debugger
       this.geolocation.getCurrentPosition().then((resp) => {
-        this.tree.latitude = ''+resp.coords.latitude;
-        this.tree.longitude = ''+resp.coords.longitude;
+        this.tree.Latitude = ''+resp.coords.latitude;
+        this.tree.Longitude = ''+resp.coords.longitude;
           // resp.coords.latitude;
           // resp.coords.longitude
       }).catch((error) => {
@@ -236,34 +236,44 @@ export class NewtreePage {
   }
 
   CreateTree(){
-    this.tree.user_id = this.user.id;
-    console.log(this.tree);
-    let loading = this.loadingCtrl.create();
-    loading.present();
-    this.arvoreProvider.createArvore(this.tree,this.user.token).subscribe(res=>{
-      loading.dismiss();
+    // this.tree.UserID = this.user.UserID;
+    // console.log(this.tree);
+    // let loading = this.loadingCtrl.create();
+    // loading.present();
+    // this.arvoreProvider.createArvore(this.tree).subscribe(res=>{
+    //   loading.dismiss();
 
-      console.log(JSON.stringify(res));
-      if(this.imgtree != ''){
-        let loadUpload = this.loadingCtrl.create({content:'Upload de foto'});
-        loadUpload.present();
-        this.arvoreProvider.uploadFoto(res.id_arvore,this.imgtree,this.user.token).subscribe(result=>{
-          loadUpload.dismiss();
+    //   console.log(JSON.stringify(res));
+    //   if(this.imgtree != ''){
+    //     let loadUpload = this.loadingCtrl.create({content:'Upload de foto'});
+    //     loadUpload.present();
+    //     this.arvoreProvider.uploadFoto(res.TreeID,this.imgtree).subscribe(result=>{
+    //       loadUpload.dismiss();
 
-          console.log(JSON.stringify(result));
-          this.navCtrl.setRoot('MyTreesPage');
-        },err=>{
-          loadUpload.dismiss();
+    //       console.log(JSON.stringify(result));
+    //       this.navCtrl.setRoot('MyTreesPage');
+    //     },err=>{
+    //       loadUpload.dismiss();
 
-          console.log(JSON.stringify(err));
-          this.navCtrl.setRoot('MyTreesPage');
-        })
-      }else{
-        this.navCtrl.setRoot('MyTreesPage');
-      }
+    //       console.log(JSON.stringify(err));
+    //       this.navCtrl.setRoot('MyTreesPage');
+    //     })
+    //   }else{
+    //     this.navCtrl.setRoot('MyTreesPage');
+    //   }
+    // },err=>{
+    //   loading.dismiss();
+    //   console.log(err);
+    // })
+    this.arvoreProvider.uploadFoto(1,this.imgtree).subscribe(result=>{
+      
+
+      console.log(JSON.stringify(result));
+      this.navCtrl.setRoot('MyTreesPage');
     },err=>{
-      loading.dismiss();
-      console.log(err);
+
+      console.log(JSON.stringify(err));
+      this.navCtrl.setRoot('MyTreesPage');
     })
   }
 

@@ -20,7 +20,7 @@ export class MyaccountPage {
   public minhaContaBotaoAlterarMostrar:boolean = true;
   public minhaContaBotaoSalvarMostrar:boolean = false;
 
-  userInfos: IUsuario = {arvore : []};
+  userInfos: IUsuario = {Trees : []};
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -67,7 +67,7 @@ export class MyaccountPage {
         console.log("Não logado");
         this.navCtrl.setRoot('LoginPage');
       }
-      console.log(this.userInfos.arvore);
+      console.log(this.userInfos.Trees);
       });
 
 

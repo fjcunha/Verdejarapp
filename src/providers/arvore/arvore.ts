@@ -65,13 +65,13 @@ export class ArvoreProvider {
 		return this.http.get<IEspecie[]>(url, { headers: this.headers });
   }
   
-  createArvore(arvore:IArvore, token:string){
+  createArvore(arvore:IArvore){
 		this.headers = new HttpHeaders()
 			.set('Content-Type', 'application/json; charset=utf-8')
 			.set("cache-control", "no-cache")
 			.set("Access-Control-Allow-Origin", "*")
 			.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-			.set ("Authorization", "Bearer "+ token);
+			.set ("Authorization", this.token);
 
 			let url: string = this.APIURL + "/arvore/create";
 
@@ -79,24 +79,24 @@ export class ArvoreProvider {
 
   }
   
-  uploadFoto(id_arvore:number, imagem:string, token:string){
+  uploadFoto(id_arvore:number, imagem:string){
 		
 		const fileTransfer: FileTransferObject = this.transfer.create();
 		
 		let options: FileUploadOptions = {
-			fileKey : 'image[]',
+			fileKey : 'file',
 			fileName: imagem,
 			headers: {}
 		 }
 
 		this.headers = new HttpHeaders()
-			.set('Content-Type', 'application/json; charset=utf-8')
+			.set('Content-Type', 'multipart/form-data')
 			.set("cache-control", "no-cache")
 			.set("Access-Control-Allow-Origin", "*")
 			.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-			.set ("Authorization", "Bearer "+ token);
+			.set ("Authorization", this.token);
 
-			let url: string = this.APIURL + "/arvore/foto/add/"+id_arvore;
+			let url: string = this.APIURL + `/photos/uploadimage?id=${id_arvore}&type=tree`;
 
 			return this.http.post<IFoto>(url, options, { headers: this.headers});
 

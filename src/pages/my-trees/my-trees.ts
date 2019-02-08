@@ -40,7 +40,7 @@ export class MyTreesPage {
         this.menuCtrl.enable(false, 'NotAuth');
 
         console.log(this._customer);
-        this.GetUserData(this._customer.token);
+        this.GetUserData();
       }
       else{
         console.log("Não logado");
@@ -50,11 +50,11 @@ export class MyTreesPage {
     });		
   }
   
-  GetUserData(token:string){
-		this.customerProvider.UserData(this._customer.token).subscribe(retorno => {
+  GetUserData(){
+		this.customerProvider.UserData(this._customer.UserID).subscribe(retorno => {
 				//Salva os dados dentro do banco de dados
-				this._customer = retorno;
-				this._customer.token = token;
+        this._customer = retorno;
+        console.log(this._customer);
 				this.storageProvider.SetStorage('VerdejarUser', this._customer);
 				this.menuCtrl.enable(true, 'auth');
 				this.menuCtrl.enable(false, 'unauth');

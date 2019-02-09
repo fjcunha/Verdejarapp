@@ -61,7 +61,7 @@ export class ArvoreProvider {
 	}
 
 	getEspecieAll() {
-		let url: string = this.APIURL + "/especie";
+		let url: string = this.APIURL + "/species";
 		return this.http.get<IEspecie[]>(url, { headers: this.headers });
   }
   
@@ -73,21 +73,24 @@ export class ArvoreProvider {
 			.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
 			.set ("Authorization", this.token);
 
-			let url: string = this.APIURL + "/arvore/create";
+			let url: string = this.APIURL + "/trees";
 
 			return this.http.post<IArvore>(url, arvore, { headers: this.headers});
 
   }
   
-  uploadFoto(id_arvore:number, imagem:string){
+  uploadFoto(id_arvore:number, imagem:string, filename){
 		
 		const fileTransfer: FileTransferObject = this.transfer.create();
 		
 		let options: FileUploadOptions = {
 			fileKey : 'file',
-			fileName: imagem,
-			headers: {}
-		 }
+			fileName: filename,
+      headers: {},
+      mimeType: "image/jpeg",
+      chunkedMode: false
+     }
+     
 
 		this.headers = new HttpHeaders()
 			.set('Content-Type', 'multipart/form-data')
@@ -98,7 +101,16 @@ export class ArvoreProvider {
 
 			let url: string = this.APIURL + `/photos/uploadimage?id=${id_arvore}&type=tree`;
 
-			return this.http.post<IFoto>(url, options, { headers: this.headers});
+      return new Promise(function(resolve,reject){
+        fileTransfer.upload(imagem, url, options)
+        .then((data) => {
+          resolve(data);
+        }, (err) => {
+          reject(err);
+        })
+      })
+
+			//return this.http.post<IFoto>(url, options, { headers: this.headers});
 
 	}
 

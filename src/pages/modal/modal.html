@@ -7,9 +7,18 @@
 -->
 <ion-content padding style="background-color: #999999!important">
   <ion-slides>
-    <ion-slide *ngFor="let imgs of data.objImg.fotos">
-      <img src="{{data.objImg.url+imgs.user_id+'/'+imgs.id_arvore+'/'}}" alt="{{data.objImg.especie.descricao}}" class="fullscreen-image">
-      <p class="legenda-img">{{data.objImg.especie.descricao}}</p>
+    <ion-slide *ngFor="let imgs of tree.Photos">
+      <img src="{{_imgUrl + imgs.Url}}" class="fullscreen-image">
+      <!-- <p class="legenda-img">{{data.objImg.especie.descricao}}</p> -->
     </ion-slide>
   </ion-slides>
+  <ion-row>
+    <ion-col col-12 style="text-align:center;">
+      <h2>{{tree.Specie?.Name}}</h2>
+      <p>
+        {{tree.Specie?.Description}}
+      </p>
+    </ion-col>
+  </ion-row>
+
 </ion-content>

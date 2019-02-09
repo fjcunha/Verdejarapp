@@ -9,6 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class ApiUrlProvider {
+  
   private static SERVER_URL = "http://intelprog-001-site3.btempurl.com/api/";
   private static LOCAL_IP = "http://192.168.100.6/verdejarweb/api/";
   private static ACCESS_TOKEN = "a94aaff5737e7d153dd7302a80ecaf7d";
@@ -16,6 +17,8 @@ export class ApiUrlProvider {
   public static readonly PROD:boolean = false;
   public static readonly DEPLOY:boolean = true;
 
+  private static SERVER_BASE = ApiUrlProvider.PROD ? "http://intelprog-001-site3.btempurl.com/" : 
+                                                    "http://192.168.100.6/verdejarweb/";
   public static readonly TIMEOUT:number = 20000;
 
   public static GetUrl():string{
@@ -28,6 +31,10 @@ export class ApiUrlProvider {
 
   public static GetToken():string{
     return this.ACCESS_TOKEN;
+  }
+
+  public static GetImageBase():string{
+    return this.SERVER_BASE;
   }
 
 }

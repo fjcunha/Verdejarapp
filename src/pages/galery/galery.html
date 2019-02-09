@@ -10,9 +10,10 @@
 <ion-content>
   <ion-grid>
       <ion-row>
-          <ion-col col-4 *ngFor="let img of images">
-              <button ion-button (click)="openModal(img.retorno)">
-                  <img src="{{img.image_path}}" >
+          <ion-col col-4 *ngFor="let tree of trees">
+              <button ion-button (click)="openModal(tree)">
+                <img *ngIf="tree.Photos.length <= 0" src="#">
+                <img *ngIf="tree.Photos.length > 0" src="{{_imgUrl + tree.Photos[0].Url}}" >
               </button>
           </ion-col>
       </ion-row>

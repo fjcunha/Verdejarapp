@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 import { IUsuario } from '../../interfaces/IUsuario';
 import { StorageProvider } from '../../providers/storage/storage';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
+import { ApiUrlProvider } from '../../providers/api-url/api-url';
 
 /**
  * Generated class for the MyTreesPage page.
@@ -18,6 +19,7 @@ import { UsuarioProvider } from '../../providers/usuario/usuario';
 })
 export class MyTreesPage {
   _customer:IUsuario = {};
+  _imgUrl = ApiUrlProvider.GetImageBase();
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,

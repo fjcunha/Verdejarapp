@@ -19,8 +19,8 @@
   <ion-list>
     <ion-item>
       <ion-label>Escolha a especie</ion-label>
-      <ion-select [(ngModel)]="tree.especie_id" cancelText="Cancelar">
-        <ion-option *ngFor="let esp of especies" value={{esp.id_especie}}>{{esp.nome}}</ion-option>
+      <ion-select [(ngModel)]="tree.SpecieID" cancelText="Cancelar">
+        <ion-option *ngFor="let esp of especies" value={{esp.SpecieID}}>{{esp.Name}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>

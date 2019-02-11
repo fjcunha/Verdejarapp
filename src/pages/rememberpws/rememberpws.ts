@@ -28,28 +28,34 @@ public email:string = "";
     console.log(this.email);
     let loading = this.loadingCtrl.create();
     loading.present();
-    // this.userProvider.EmailPassword(this.email).subscribe((res:any)=>{
-    //   loading.dismiss();
-    //   if(res.token){
-    //     this.alertCtrl.create({
-    //       title:'Sucesso',
-    //       message:'O processo foi concluido com sucesso. <br /> Token: '+res.token,
-    //       buttons:['OK']
-    //     }).present();
-    //   }
-    //   console.log(res);
-    // },(err)=>{
-    //   loading.dismiss();
+    this.userProvider.EmailPassword(this.email).subscribe((res:any)=>{
+      loading.dismiss();
+      if(res.status == 'success'){
+        this.alertCtrl.create({
+          title:'Sucesso',
+          message:res.message,
+          buttons:['OK']
+        }).present();
+      }else{
+        this.alertCtrl.create({
+          title:'Falha ao recuperar senha',
+          message:res.message,
+          buttons:['OK']
+        }).present();
+      }
+      console.log(res);
+    },(err)=>{
+      loading.dismiss();
 
-    //   console.log(err);
-    //   if(err.status == 401){
-    //     this.alertCtrl.create({
-    //       title:'Falha ao recuperar senha',
-    //       message:err.error.message,
-    //       buttons:['OK']
-    //     }).present();
-    //   }
-    // })
+      console.log(err);
+      if(err.status == 401){
+        this.alertCtrl.create({
+          title:'Falha ao recuperar senha',
+          message:err.error.message,
+          buttons:['OK']
+        }).present();
+      }
+    })
   }
   //função loading botão
   // presentLoading() {

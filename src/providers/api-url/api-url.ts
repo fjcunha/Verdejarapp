@@ -10,14 +10,14 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiUrlProvider {
   
-  private static SERVER_URL = "http://intelprog-001-site3.btempurl.com/api/";
-  private static LOCAL_IP = "http://192.168.100.6/verdejarweb/api/";
+  private static SERVER_URL = "http://intelprog-001-site13.btempurl.com/api";
+  private static LOCAL_IP = "http://192.168.100.6/verdejarweb/api";
   private static ACCESS_TOKEN = "a94aaff5737e7d153dd7302a80ecaf7d";
 
   public static readonly PROD:boolean = false;
   public static readonly DEPLOY:boolean = true;
 
-  private static SERVER_BASE = ApiUrlProvider.PROD ? "http://intelprog-001-site3.btempurl.com/" : 
+  private static SERVER_BASE = ApiUrlProvider.PROD ? "http://intelprog-001-site13.btempurl.com/" : 
                                                     "http://192.168.100.6/verdejarweb/";
   public static readonly TIMEOUT:number = 20000;
 
@@ -25,7 +25,7 @@ export class ApiUrlProvider {
     if(ApiUrlProvider.DEPLOY){
       return ApiUrlProvider.PROD ? ApiUrlProvider.SERVER_URL : ApiUrlProvider.LOCAL_IP;
     }else{
-      return ApiUrlProvider.PROD ? "http://localhost:8100/prodapi/" : "http://localhost:8100/api/";
+      return ApiUrlProvider.PROD ? "http://localhost:8100/prodapi" : "http://localhost:8100/api";
     }
   }
 

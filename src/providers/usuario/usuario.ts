@@ -65,17 +65,19 @@ export class UsuarioProvider {
 		return this.http.get<IUsuario>(url,  { headers: this.headers });
   }
 
-  // EmailPassword(email:string){
-  //   let url:string = this.basepath + '/password/email';
-  //   this.headers = new HttpHeaders()
-	// 		.set('Content-Type', 'application/json; charset=utf-8')
-	// 		.set("cache-control", "no-cache")
-	// 		.set("Access-Control-Allow-Origin", "*")
-  //     .set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  EmailPassword(email:string){
+    let url:string = this.APIURL + '/users/rememberpassword?email='+email;
+    this.headers = new HttpHeaders()
+			.set('Content-Type', 'application/json; charset=utf-8')
+			.set("cache-control", "no-cache")
+			.set("Access-Control-Allow-Origin", "*")
+      .set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+      .set("Authorization", this.token);
       
-  //   return this.http.post(url,{email:email},{ headers: this.headers });
-  //   // return this.http.post<IUsuario>(url,  { headers: this.headers });
-  // }
+
+    return this.http.get(url,{ headers: this.headers });
+    // return this.http.post<IUsuario>(url,  { headers: this.headers });
+  }
   
   // ResetPassword(token:string){
   //   this.headers = new HttpHeaders()

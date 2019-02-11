@@ -22,30 +22,30 @@
 
         <ion-card-content>
           <ion-card-title>
-           {{userInfos?.name}}
+           {{userInfos?.Name}}
           </ion-card-title>
         </ion-card-content>
         <ion-item>
             <ion-label stacked>Nome Completo</ion-label>
-            <ion-input [(ngModel)]="userInfos.name" [disabled]="minhaContaAlterarInput" type="text" placeholder="Nome Completo"></ion-input>
+            <ion-input [(ngModel)]="userInfos.Name" [disabled]="minhaContaAlterarInput" type="text" placeholder="Nome Completo"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label stacked>Email</ion-label>
-            <ion-input [(ngModel)]="userInfos.email" [disabled]="minhaContaAlterarInput" type="email" placeholder="Email"></ion-input>
+            <ion-input [(ngModel)]="userInfos.Email" [disabled]="minhaContaAlterarInput" type="email" placeholder="Email"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label stacked>Telefone</ion-label>
-            <ion-input [(ngModel)]="userInfos.phone" [disabled]="minhaContaAlterarInput" type="text" placeholder="(DD) Telefone"></ion-input>
+            <ion-input [(ngModel)]="userInfos.Phone" [disabled]="minhaContaAlterarInput" type="text" placeholder="(DD) Telefone"></ion-input>
         </ion-item>
-        <ion-item *ngIf="userInfos.arvore">
+        <ion-item *ngIf="userInfos.Trees">
           <ion-icon name='flower' item-start style="color: #008000"></ion-icon>
           Arvores
-          <ion-badge item-end>{{userInfos?.arvore.length}}</ion-badge>
+          <ion-badge item-end>{{userInfos?.Trees.length}}</ion-badge>
 
-          <ion-item *ngFor="let itemFotos of userInfos?.arvore.fotos" >
+          <ion-item *ngFor="let itemFotos of userInfos?.Trees?.Photos" >
             <ion-icon name='images' item-start style="color: #3f729b"></ion-icon>
               Fotos
-            <ion-badge item-end>{{userInfos?.arvore?.fotos.length}}</ion-badge>
+            <ion-badge item-end>{{userInfos?.Trees?.Photos.length}}</ion-badge>
           </ion-item>
 
 
@@ -64,7 +64,7 @@
 
 
 
-        <ion-item >
+        <!-- <ion-item>
             <button ion-button outline item-end icon-start (click)="AtivarInput()" *ngIf="minhaContaBotaoAlterarMostrar">
                 <ion-icon name="filing"></ion-icon>
                 Alterar
@@ -73,7 +73,7 @@
                 <ion-icon name="filing"></ion-icon>
                 Salvar
             </button>
-        </ion-item>
+        </ion-item> -->
       </ion-card>
 
 

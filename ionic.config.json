@@ -8,11 +8,11 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://localhost/verdejarweb/api"
+      "proxyUrl": "http://localhost/verdejarweb/api/"
     },
     {
       "path": "/prodapi",
-      "proxyUrl": "http://intelprog-001-site13.btempurl.com/api"
+      "proxyUrl": "http://intelprog-001-site13.btempurl.com/api/"
     }
   ]
 }

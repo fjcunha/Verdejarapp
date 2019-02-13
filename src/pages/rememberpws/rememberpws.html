@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<!-- <ion-header>
 
   <ion-navbar>
     <button ion-button menuToggle>
@@ -13,15 +13,24 @@
     <ion-title><ion-icon name="key"></ion-icon> Esqueci a senha</ion-title>
   </ion-navbar>
 
-</ion-header>
+</ion-header> -->
 
 
-<ion-content padding>
-  <div padding-horizontal text-center style="margin-top:20px;" >
-    <img style="max-width: 50%;" src="assets/imgs/arvore.jpg" />
-    <h2 ion-text style="margin-top:0;" class="text-primary">
-      <strong style="color:green;">Verdejar</strong>App
-    </h2>
+<ion-content padding class="content-login" padding style="padding: 50px !important;">
+  <div padding-horizontal text-center style="margin-top:20px;">
+    <div class="content_item_logo">
+      <div class="item_logo">
+        <img class="img_logo" src="assets/imgs/logo_verdejar.png" />
+
+        <h2 ion-text style="margin-top:0;" class="text-primary">
+          <strong style="color:green;">
+            Verdejar
+          </strong>
+
+          App
+        </h2>
+      </div>
+    </div>
   </div>
 
     <ion-item>
@@ -30,7 +39,20 @@
         
     </ion-item>
     
-        <button ion-button full (click)="RememberPassword()"><ion-icon name="send"></ion-icon> Enviar</button>
+    <button ion-button icon-end block (click)="RememberPassword()" color="secondary" style="margin-top: 15px;">
+      <span style="font-size: 18px; font-weight: 300; width: 125px;">
+
+        <ion-icon name="send"></ion-icon> Enviar
+      </span>
+    </button>
+
+    <button ion-button icon-start block (click)="navCtrl.pop()" color="purple">
+      <span style="font-size: 18px; font-weight: 300; width: 125px;">
+
+        Voltar
+      </span>
+    </button>
+        <!-- <button ion-button full ></button> -->
     
     
 </ion-content>

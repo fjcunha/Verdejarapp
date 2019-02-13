@@ -1,6 +1,30 @@
 ion-content {
   background: transparent !important;
 }
+
+.close-modal {
+  position: absolute;
+  height: 100%;
+  right: 10px;
+  top: 5px;
+  display: flex;
+  align-items: right;
+  justify-content: flex-start;
+
+  > svg {
+    width: 40px;
+    height: 40px;
+    fill: #999;
+  }
+
+  > span {
+    color: #999;
+    font-size: 1.5em;
+    margin-left: 20px;
+  }
+
+}
+
 .legenda-img {
     position: relative;
     top: 70%;

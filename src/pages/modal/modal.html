@@ -5,14 +5,30 @@
   Ionic pages and navigation.
 
 -->
-<ion-content padding style="background-color: #999999!important">
-  <ion-slides>
-    <ion-slide *ngFor="let imgs of tree.Photos">
-      <img src="{{_imgUrl + imgs.Url}}" class="fullscreen-image">
-      <!-- <p class="legenda-img">{{data.objImg.especie.descricao}}</p> -->
-    </ion-slide>
-  </ion-slides>
+<ion-header>
+  <ion-navbar>
+    <div class="close-modal">
+      <svg viewBox="0 0 24 24" (click)="Close()">
+        <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"></path>
+      </svg>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding style="background-color: #000000d1!important">
   <ion-row>
+    <ion-col col-12>
+      <ion-slides>
+        <ion-slide *ngFor="let imgs of tree.Photos">
+          <img src="{{_imgUrl + imgs.Url}}">
+          <!-- <p class="legenda-img">{{data.objImg.especie.descricao}}</p> -->
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
+  </ion-row>
+  
+  <ion-row style="color:white">
     <ion-col col-12 style="text-align:center;">
       <h2>{{tree.Specie?.Name}}</h2>
       <p>

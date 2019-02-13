@@ -72,8 +72,8 @@ export class LoginPage {
       if(res.status == 'success'){
         this.user = res.user;
         this.storageProvider.SetStorage('VerdejarUser', this.user);
-				this.menuCtrl.enable(true, 'auth');
-				this.menuCtrl.enable(false, 'unauth');
+				this.menuCtrl.enable(true, 'Auth');
+        this.menuCtrl.enable(false, 'NotAuth');
 				//this.dismissLoading();
 				this.navCtrl.setRoot('TabsPage');
         //busca os dados do usuario dentro da API

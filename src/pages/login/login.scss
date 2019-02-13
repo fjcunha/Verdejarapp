@@ -1,57 +1,69 @@
 page-login {
-  .list-form {
+  
+.list-form {
+  padding: 0;
+  margin-bottom: 0;
+
+  ion-item {
+    background: none;
     padding: 0;
-    margin-bottom: 0;
 
-    ion-item {
-      background: none;
-      padding: 0;
+    &:first-child {
+      border-top: none;
+    }
 
-      &:first-child {
-        border-top: none;
-      }
+    &:after {
+      display: none;
+    }
 
-      &:after {
-        display: none;
-      }
+    ion-label {
+      font-size: 1em;
+      color: color($colors, primary);
+    }
 
-      ion-label {
-        font-size: 1em;
-        color: color($colors, primary);
-      }
-
-      input {
-        color: color($colors, primary);
-      }
+    input {
+      color: color($colors, primary);
     }
   }
-  .content-login {
-    background: url(../assets/imgs/back_login_6.jpg) !important;
-    -webkit-background-size: cover !important;
-    -moz-background-size: cover !important;
-    -o-background-size: cover !important;
-    background-size: cover !important;
+}
+
+//ANDROID
+.label-md[floating]{
+  color: white!important;
+  }
+  .item-md {
+  padding-left: 0;
+  border: 0;
+  border-bottom: 2px solid #fff !important;
+  border-radius: 0;
+  position: relative;
+  font-size: 20px;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: transparent;
+  -webkit-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+  }
+  
+  .list-md>.item-block:first-child {
+  border-top: 0;
+  }
+  
+  .list-md>.item-block:last-child,
+  .list-md>.item-wrapper:last-child .item-block {
+  border-bottom: 0;
+  }
+  
+  .list-md .item-block .item-inner {
+  border-bottom: 0;
   }
 
-  .content_item_logo {
-    width: 200px;
-    height: 200px;
-    margin: auto;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    margin-bottom: 15px;
-    box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0.2);
-  }
 
-  .item_logo {
-    padding-top: 5px;
-  }
 
-  .img_logo {
-    width: 150px;
-    height: auto;
+  //IOS
+  .label-ios[floating]{
+    color: white!important;
   }
-
   .item-ios {
     padding-left: 0;
     border: 0;
@@ -65,88 +77,18 @@ page-login {
     -webkit-transition: background-color 200ms linear;
     transition: background-color 200ms linear;
   }
-
+  
   .list-ios>.item-block:first-child {
     border-top: 0;
   }
-
+  
   .list-ios>.item-block:last-child,
   .list-ios>.item-wrapper:last-child .item-block {
     border-bottom: 0;
   }
-
+  
   .list-ios .item-block .item-inner {
     border-bottom: 0;
   }
-
-  .button-ios-secondary {
-    color: #fff;
-    background-color: rgba(41, 138, 42, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.button-ios-purple {
-  color: #fff;
-  background-color: rgba(178, 0, 86, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.button-ios {
-  border-radius: 10px;
-  height: 3.5em;
-}
-.label-ios[floating]{
-  color: white!important;
-}
-
-// ANDROID
-.label-md[floating]{
-  color: white!important;
-}
-.item-md {
-  padding-left: 0;
-  border: 0;
-  border-bottom: 2px solid #fff !important;
-  border-radius: 0;
-  position: relative;
-  font-size: 20px;
-  font-weight: 300;
-  color: #ffffff;
-  background-color: transparent;
-  -webkit-transition: background-color 200ms linear;
-  transition: background-color 200ms linear;
-}
-
-.list-md>.item-block:first-child {
-  border-top: 0;
-}
-
-.list-md>.item-block:last-child,
-.list-md>.item-wrapper:last-child .item-block {
-  border-bottom: 0;
-}
-
-.list-md .item-block .item-inner {
-  border-bottom: 0;
-}
-
-.button-md-secondary {
-  color: #fff;
-  background-color: rgba(41, 138, 42, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.button-md-purple {
-color: #fff;
-background-color: rgba(178, 0, 86, 0.5);
-border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.button-md {
-border-radius: 10px;
-height: 3.5em;
-}
-
-
 
 }

@@ -14,3 +14,86 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.content-login {
+  background: url(../assets/imgs/back_login_6.jpg) !important;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+}
+
+.content-page {
+  background: url(../assets/imgs/wood-background.png) !important;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+}
+
+.content_item_logo {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  margin-bottom: 15px;
+  box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0.2);
+}
+
+
+
+.item_logo {
+  padding-top: 5px;
+}
+
+.img_logo {
+  width: 150px;
+  height: auto;
+}
+
+//IOS
+
+.button-ios-secondary {
+  color: #fff;
+  background-color: rgba(41, 138, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.button-ios-purple {
+color: #fff;
+background-color: rgba(178, 0, 86, 0.5);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.button-ios {
+border-radius: 10px;
+height: 3.5em;
+}
+.tabs-ios .tabbar {
+  background: #1a3815;
+}
+
+// ANDROID
+.tabs-md .tabbar {
+  background: #1a3815;
+}
+
+
+
+.button-md-secondary {
+color: #fff;
+background-color: rgba(41, 138, 42, 0.5);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.button-md-purple {
+color: #fff;
+background-color: rgba(178, 0, 86, 0.5);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.button-md {
+border-radius: 10px;
+height: 3.5em;
+}
+

@@ -36,9 +36,9 @@ export class MyApp {
     this.pagesAuth = [
       { title: 'Home', component: 'TabsPage', icon: 'home' },
       { title: 'Minha Conta', component: 'MyaccountPage',  icon: 'person' },
-      { title: 'Minhas Arvores', component: 'MyTreesPage',  icon: 'tree' },
-      { title: 'Mapa', component: 'MapsPage' , icon: 'map'} ,
-      { title: 'Sair', component: 'Sair', icon: 'person' }
+      { title: 'Minhas Arvores', component: 'MyTreesPage',  icon: 'leaf' },
+      { title: 'Mapa', component: 'MapsPage' , icon: 'pin'} ,
+      { title: 'Sair', component: 'Sair', icon: 'exit' }
     ];
 
   }

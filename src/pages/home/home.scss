@@ -1,13 +1,17 @@
 page-home {
-
+  
 }
 
 .card-background-page {
+
+
     //Formatação card topo
       .card-top {
         position: relative;
         text-align: center;
         height: 50%;
+        border-radius: 20px;
+        background: #ffffffde;
       }
       .card-image {
         opacity: 0.5;
@@ -35,6 +39,8 @@ page-home {
     //Formatação card fundo
         .card-bottom{
         position: relative;
+        border-radius: 20px;
+        background: #ffffffde;
       }
         
         .card-aboutus-title{

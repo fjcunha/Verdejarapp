@@ -1,3 +1,94 @@
 page-rememberpws {
 
+  .list-form {
+    padding: 0;
+    margin-bottom: 0;
+  
+    ion-item {
+      background: none;
+      padding: 0;
+  
+      &:first-child {
+        border-top: none;
+      }
+  
+      &:after {
+        display: none;
+      }
+  
+      ion-label {
+        font-size: 1em;
+        color: color($colors, primary);
+      }
+  
+      input {
+        color: color($colors, primary);
+      }
+    }
+  }
+  
+  //ANDROID
+  .label-md[floating]{
+    color: white!important;
+    }
+    .item-md {
+    padding-left: 0;
+    border: 0;
+    border-bottom: 2px solid #fff !important;
+    border-radius: 0;
+    position: relative;
+    font-size: 20px;
+    font-weight: 300;
+    color: #ffffff;
+    background-color: transparent;
+    -webkit-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+    }
+    
+    .list-md>.item-block:first-child {
+    border-top: 0;
+    }
+    
+    .list-md>.item-block:last-child,
+    .list-md>.item-wrapper:last-child .item-block {
+    border-bottom: 0;
+    }
+    
+    .list-md .item-block .item-inner {
+    border-bottom: 0;
+    }
+  
+  
+  
+    //IOS
+    .label-ios[floating]{
+      color: white!important;
+    }
+    .item-ios {
+      padding-left: 0;
+      border: 0;
+      border-bottom: 2px solid #fff !important;
+      border-radius: 0;
+      position: relative;
+      font-size: 20px;
+      font-weight: 300;
+      color: #ffffff;
+      background-color: transparent;
+      -webkit-transition: background-color 200ms linear;
+      transition: background-color 200ms linear;
+    }
+    
+    .list-ios>.item-block:first-child {
+      border-top: 0;
+    }
+    
+    .list-ios>.item-block:last-child,
+    .list-ios>.item-wrapper:last-child .item-block {
+      border-bottom: 0;
+    }
+    
+    .list-ios .item-block .item-inner {
+      border-bottom: 0;
+    }
+  
 }

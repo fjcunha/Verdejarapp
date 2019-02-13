@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ViewController, NavParams } from 'ionic-angular';
 import { IArvore } from '../../interfaces/IArvore';
 import { ApiUrlProvider } from '../../providers/api-url/api-url';
 
@@ -20,11 +20,15 @@ export class ModalPage {
   tree:IArvore = {};
   _imgUrl = ApiUrlProvider.GetImageBase();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public viewCtrl: ViewController, public navParams: NavParams) {
     this.tree = this.navParams.get('tree');
     console.log(this.tree);
   }
 
   ionViewDidLoad() {
+  }
+
+  Close(){
+    this.viewCtrl.dismiss();
   }
 }

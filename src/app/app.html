@@ -2,10 +2,10 @@
   <ion-header>
     <ion-toolbar>
 
-      <button menuClose ion-button clear icon-left text-left class="menu-user-button" (click)="openPage('login')">
+      <!-- <button menuClose ion-button clear icon-left text-left class="menu-user-button" (click)="openPage('login')">
         <ion-icon name="contact"></ion-icon>
         Olá, clique aqui para entrar
-      </button>
+      </button> -->
 
     </ion-toolbar>
   </ion-header>
@@ -26,11 +26,16 @@
 <ion-menu id="Auth" [content]="content">
     <ion-header>
       <ion-toolbar>
-  
-        <button menuClose ion-button clear icon-left text-left class="menu-user-button" (click)="openPage('myaccountpage')">
+        
+        <ion-row>
+          <ion-col col-12 style="text-align:center;">
+            <h2>Verdejar<span style="color:#1a3815;">App</span></h2>
+          </ion-col>
+        </ion-row>
+        <!-- <button menuClose ion-button clear icon-left text-left class="menu-user-button" (click)="openPage('myaccountpage')">
           <ion-icon name="contact"></ion-icon>
           Olá, {{user?.Name}}
-        </button>
+        </button> -->
   
       </ion-toolbar>
     </ion-header>

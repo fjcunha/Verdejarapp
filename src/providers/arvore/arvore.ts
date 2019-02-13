@@ -40,14 +40,14 @@ export class ArvoreProvider {
 
 	getAll() {
 
-		let url: string = this.APIURL + "/trees";
+		let url: string = this.APIURL + "trees";
 
 		return this.http.get<IArvore[]>(url, { headers: this.headers });
 	}
 
 	getConfig() {
 
-		let url: string = this.APIURL + "/configs";
+		let url: string = this.APIURL + "configs";
 
 
 		return this.http.get<IConfig>(url, { headers: this.headers });

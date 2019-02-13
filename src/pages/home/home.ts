@@ -23,7 +23,7 @@ export class HomePage {
 
   	_arvores: IArvore[];
 	_confgis:IConfig;
-	_customer:IUsuario;
+	user:IUsuario;
 
 	loading;
  
@@ -45,7 +45,7 @@ export class HomePage {
       if(user != null) {
 
         console.log('Logado');
-        this._customer = user;
+        this.user = user;
         this.menuCtrl.enable(true, 'Auth');
         this.menuCtrl.enable(false, 'NotAuth');
 			}

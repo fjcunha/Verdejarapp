@@ -90,8 +90,8 @@
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="Selecione uma foto" />
     </plugin>
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
-    <engine name="android" spec="~7.1.4" />
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
     <plugin name="cordova.plugins.diagnostic" spec="^4.0.11" />
     <plugin name="cordova-plugin-crop" spec="^0.4.0" />
+    <engine name="android" spec="7.1.4" />
 </widget>

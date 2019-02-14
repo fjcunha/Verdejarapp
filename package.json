@@ -80,6 +80,8 @@
       "cordova.plugins.diagnostic": {},
       "cordova-plugin-crop": {}
     },
-    "platforms": []
+    "platforms": [
+      "android"
+    ]
   }
 }

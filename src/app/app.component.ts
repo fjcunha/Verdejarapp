@@ -6,6 +6,8 @@ import { StorageProvider } from '../providers/storage/storage';
 import { IUsuario } from '../interfaces/IUsuario';
 import { HomePage } from '../pages/home/home';
 
+import { AndroidPermissions } from '@ionic-native/android-permissions';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -22,7 +24,8 @@ export class MyApp {
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     private storageProvider:StorageProvider,
-    public menuCtrl: MenuController) {
+    public menuCtrl: MenuController,
+    private androidPermissions:AndroidPermissions) {
 
     this.initializeApp();
 
@@ -64,6 +67,16 @@ export class MyApp {
     this.storageProvider.SetStorage('VerdejarUser',null);
     this.nav.setRoot('LoginPage');
   }
+
+  checkPermissions(){
+    let permissions = [];
+    permissions.push(this.androidPermissions.PERMISSION.ACCESS_FINE_LOCATION);
+    permissions.push(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION);
+    this.androidPermissions.requestPermissions(permissions).then(resP=>{
+      console.log('PERMISSIONS REQUEST RESULT: ' + JSON.stringify(resP));      
+    })
+  }
+
 
   
 }

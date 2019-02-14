@@ -9,6 +9,7 @@ import { IEspecie } from '../../interfaces/IEspecie';
 import { IArvore } from '../../interfaces/IArvore';
 import { IUsuario } from '../../interfaces/IUsuario';
 import { StorageProvider } from '../../providers/storage/storage';
+import { Crop } from '@ionic-native/crop';
 
 /**
  * Generated class for the NewtreePage page.
@@ -35,6 +36,7 @@ export class NewtreePage {
               private imagePicker:ImagePicker,
               private arvoreProvider: ArvoreProvider,
               private storageProvider:StorageProvider,
+              private crop:Crop
               ) {
   }
 
@@ -75,6 +77,17 @@ export class NewtreePage {
     //   })
   }
 
+  CropImage(imgAddress){
+    this.crop.crop(imgAddress, {quality: 75})
+  .then(
+      newImage => {
+        console.log('new image path is: ' + newImage);
+        this.imgtree = newImage;
+      },
+      error => console.error('Error cropping image', error)
+    );
+  }
+
   takePicture() {
     console.log("get picture from camera");
     let options = {
@@ -84,6 +97,8 @@ export class NewtreePage {
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       this.imgtree = imageData;
+      this.CropImage(this.imgtree);
+
       // If it's base64:
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       //this.user.profileImg = imageData;
@@ -103,6 +118,8 @@ export class NewtreePage {
     };
     this.imagePicker.getPictures(options).then((results) => {
       this.imgtree = results[0];
+      this.CropImage(this.imgtree);
+
       for (var i = 0; i < results.length; i++) {
         console.log('Image URI: ' + results[i]);
         // this.user.profileImg = results[i];
@@ -168,7 +185,8 @@ export class NewtreePage {
   ionViewDidLoad() {
     this.initializeEspecies();
     this.LoadUserInit();
-    this.showConfirm();
+    // this.showConfirm();
+    this.getLocalizacao();
   }
 
   voltarPagina(){
@@ -208,10 +226,14 @@ export class NewtreePage {
 
   //tentando pegar os itens do select
   initializeEspecies() {
+    let loading = this.loadingCtrl.create();
+    loading.present();
     this.arvoreProvider.getEspecieAll().subscribe(res=>{
+      loading.dismiss();
       console.log(res);
       this.especies = res;
     },err=>{
+      loading.dismiss();
       console.log(err);
     })
     
@@ -224,16 +246,29 @@ export class NewtreePage {
 
   //pegar a localização para salvar a arvore 
   getLocalizacao(){
-      // debugger
-      this.geolocation.getCurrentPosition().then((resp) => {
-        console.log(JSON.stringify(resp));
-        this.tree.Latitude = ''+resp.coords.latitude;
-        this.tree.Longitude = ''+resp.coords.longitude;
-          // resp.coords.latitude;
-          // resp.coords.longitude
-      }).catch((error) => {
-        console.log('Error getting location', error);
+    this.geolocation.getCurrentPosition().then((resp) => {
+      console.log(JSON.stringify(resp));
+      this.tree.Latitude = ''+resp.coords.latitude;
+      this.tree.Longitude = ''+resp.coords.longitude;
+        // resp.coords.latitude;
+        // resp.coords.longitude
+    }).catch((error) => {
+      let confirm = this.alertCtrl.create({
+        title: 'Falha na localização',
+        message: 'Por favor, verifique as configurações do seu dispositivo.',
+        buttons: [
+          {
+            text: 'OK',
+            handler: () => {
+              this.navCtrl.pop();
+            }
+          }
+        ]
       });
+
+      confirm.present();
+      console.log('Error getting location', error);
+    });
   }
 
   CreateTree(){

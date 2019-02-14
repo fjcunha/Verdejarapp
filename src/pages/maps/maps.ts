@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, LoadingController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GESTURE_PRIORITY_TOGGLE } from 'ionic-angular/umd/gestures/gesture-controller';
 import { AlertController } from 'ionic-angular';
@@ -8,6 +8,7 @@ import { NewtreePage } from '../newtree/newtree';
 import { IArvore } from '../../interfaces/IArvore';
 import { ArvoreProvider } from '../../providers/arvore/arvore';
 import { StorageProvider } from '../../providers/storage/storage';
+import { Diagnostic } from '@ionic-native/diagnostic';
 /**
  * Generated class for the MapsPage page.
  *
@@ -35,16 +36,50 @@ export class MapsPage {
               private geolocation: Geolocation, private platform: Platform, 
               public alertCtrl: AlertController,
               private providerArvore:ArvoreProvider,
-              private storageProvider:StorageProvider) 
+              private storageProvider:StorageProvider,
+              private loadingCtrl:LoadingController,
+              private diagnostic:Diagnostic
+            ) 
   {
     //this.initializeItems();
   }
 
-  
+  CheckLocation(){
+    return new Promise<boolean>((resolve,reject)=>{
+      this.diagnostic.isLocationEnabled().then(res=>{
+        if(!res){
+          let confirm = this.alertCtrl.create({
+            title: 'Localização não encontrada',
+            message: 'Por favor, ative seu GPS para acessar o mapa.',
+            buttons: [
+              {
+                text: 'OK',
+                handler: () => {
+                  this.diagnostic.switchToLocationSettings();
+                }
+              }
+            ]
+          });
 
-  ionViewDidLoad() {
-    this.showConfirm();
+          confirm.present();
+          resolve(false);
+        }else{
+          resolve(true);
+        }
+      })
+    })
+    
+  }
+
+  ionViewWillEnter() {
+    if (this.platform.is("cordova")) {
+      this.CheckLocation().then(res=>{
+        if(res)this.LoadArvores();
+      })
+    }else{
+      this.LoadArvores();
     }
+  }
 
     //pegar permissão para geolocalização
     showConfirm() {
@@ -56,14 +91,12 @@ export class MapsPage {
             text: 'Não',
             handler: () => {
               console.log('Disagree clicked');
-             // alert("vc apertou falso");
             }
           },
           {
             text: 'Sim',
             handler: () => {
               console.log('Agree clicked');
-              //alert("vc aperteou verdadeiro");
               this.mostrarMata();
 
             }// fim handler antes do codigo 
@@ -77,7 +110,8 @@ export class MapsPage {
     public LoadArvores(){
 
       console.log('Carrega arvores');
-  
+      let loading = this.loadingCtrl.create();
+      loading.present();
       this.providerArvore.getAll().subscribe(retorno => {
   
         console.log(retorno);
@@ -88,15 +122,15 @@ export class MapsPage {
           .then((resp) => {
             const position = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
      
-            const mapOptions = {
-              zoom: 14,
-              center: position,
-              disableDefaultUI:true,
-              zoomControl:true,
-              zoomControlOptions: {
-                style:google.maps.ZoomControlStyle.SMALL,
-                position:google.maps.ControlPosition.RIGHT_CENTER
-            }
+              const mapOptions = {
+                zoom: 14,
+                center: position,
+                disableDefaultUI:true,
+                zoomControl:true,
+                zoomControlOptions: {
+                  style:google.maps.ZoomControlStyle.SMALL,
+                  position:google.maps.ControlPosition.RIGHT_CENTER
+              }
             }
      
             this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
@@ -106,17 +140,42 @@ export class MapsPage {
               map: this.map,          
             }); 
             
+            
             var locations = this._arvores.map(element=>{
-              return {lat: parseFloat(element.Latitude),lng:parseFloat(element.Longitude)}
+              let filter = {
+                            lat: parseFloat(element.Latitude),
+                            lng:parseFloat(element.Longitude),
+                            treeId:element.TreeID
+                          };  
+              console.log(filter);
+              return filter;
             });
             console.log(locations);
     
             var image = 'assets/icon/icon_50.ico';
-            var markers = locations.map(function(location, ) {
-              return new google.maps.Marker({
+            var markers = locations.map((location )=> {
+              let itemMarker = new google.maps.Marker({
                 position: location,            
-                icon: image
+                icon: image,
+                treeId:location.treeId,
+                loadTreeDetails:(treeId)=>{
+                  console.log('load tree details: '+treeId);
+                  
+                }
               });
+              itemMarker.addListener('click',()=> {
+                // this.map.setZoom(8);
+                // this.map.setCenter(marker.getPosition());
+                console.log('click on :'+itemMarker.treeId);
+                itemMarker.loadTreeDetails(itemMarker.treeId);
+                  // let t = this.loadingCtrl.create();
+                  // t.present();
+                  // setTimeout(()=>{
+                  //   t.dismiss();
+                  // },3000);
+              });
+              
+              return itemMarker;
             });
     
             //var markerCluster = new MarkerClusterer(this.map, markers,
@@ -124,14 +183,22 @@ export class MapsPage {
             
             var markerCluster = new MarkerClusterer(this.map, markers,
                 {imagePath: 'assets/icon/grupo'});
+            loading.dismiss();
           }).catch((error) => {
+            loading.dismiss();
             console.log('Erro ao recuperar sua posição', error);
           });
 
         },error=>{
+          loading.dismiss();
           console.log(error.error);
           console.log(error.texte);
       });
+    }
+
+    public static LoadTreeDetails(treeId){
+      console.log('load tree details: '+treeId);
+      
     }
 
     ////mostar mapa
@@ -182,8 +249,13 @@ export class MapsPage {
     }
 
     paginaNovaArvore(){
-    
-      this.navCtrl.push('NewtreePage');
+      if (this.platform.is("cordova")) {
+        this.CheckLocation().then(res=>{
+          if(res)this.navCtrl.push('NewtreePage');
+        })
+      }else{
+        this.navCtrl.push('NewtreePage');
+      }
     }
 
 }

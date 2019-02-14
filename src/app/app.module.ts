@@ -7,6 +7,8 @@ import { Geolocation  } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 import { Facebook } from '@ionic-native/facebook';
 import { FileTransfer } from '@ionic-native/file-transfer';
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { Crop } from '@ionic-native/crop';
 
 
 import { MyApp } from './app.component';
@@ -23,6 +25,7 @@ import { ArvoreProvider } from '../providers/arvore/arvore';
 import { StorageProvider } from '../providers/storage/storage';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { ApiUrlProvider } from '../providers/api-url/api-url';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 //importando pagina de nova senha
 @NgModule({
@@ -53,7 +56,10 @@ import { ApiUrlProvider } from '../providers/api-url/api-url';
     ImagePicker,
     Facebook,
     FileTransfer,
-    ApiUrlProvider
+    ApiUrlProvider,
+    AndroidPermissions,
+    Diagnostic,
+    Crop
   ]
 })
 export class AppModule {}

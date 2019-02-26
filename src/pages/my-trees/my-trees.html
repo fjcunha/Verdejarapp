@@ -15,9 +15,11 @@
 
 </ion-header>
 
-<ion-content padding>
-  <ion-list>
-    <ion-item *ngFor="let tree of _customer.Trees">
+<ion-content padding  class="card-background-page content-page" >
+  <ion-list style="background:transparent;">
+    <ion-item style="border-radius: 20px;
+    background: #ffffff;
+    margin-bottom: 5px;" *ngFor="let tree of _customer.Trees">
       <ion-thumbnail item-start>
         <img src="{{_imgUrl + tree.Photos[0]?.Url}}">
       </ion-thumbnail>

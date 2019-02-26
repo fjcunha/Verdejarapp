@@ -9,11 +9,14 @@
 
 <ion-content padding class="card-background-page content-page" >
   
-    <ion-card class="card-top" ><!--Cartão de arvores plantadas-->
+    <ion-card class="card-top" (click)="GoToPage('MapsPage')"><!--Cartão de arvores plantadas-->
       <img src="assets/imgs/hand-tree.jpg" class="card-image"/>
       <!--<div class="card-title">2100</div>--><!--Para testar diversos numeros-->
       <div class="card-title">{{_arvores?.length}}</div>
-      <div class="card-subtitle">Árvores plantadas</div>
+      <div class="card-subtitle">
+        Árvores plantadas <br>
+        <span style="font-size: 15px;">Clique para ver no mapa </span>
+      </div>
     </ion-card><!--fim cartão arvores plantadas-->
 
     <ion-card class="card-bottom"><!--Cartão sobre o Verdejar-->

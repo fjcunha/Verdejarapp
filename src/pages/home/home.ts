@@ -101,5 +101,9 @@ export class HomePage {
 		this.LoadUserInit();
   		this.LoadArvores();
   		this.LoadConfigs();
-	}
+  }
+  
+  GoToPage(page:string){
+    this.app.getRootNav().setRoot(page);
+  }
 }

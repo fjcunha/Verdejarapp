@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import { ImagePicker } from '@ionic-native/image-picker';
+import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ArvoreProvider } from '../../providers/arvore/arvore';
@@ -90,10 +90,13 @@ export class NewtreePage {
 
   takePicture() {
     console.log("get picture from camera");
-    let options = {
+    let options:CameraOptions  = {
       targetWidth: 500,
-      targetHeight: 500
+      targetHeight: 500,
+      correctOrientation:true,
+      quality:70
     };
+
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       this.imgtree = imageData;
@@ -111,10 +114,10 @@ export class NewtreePage {
 
   getPicture() {
     console.log("get picture from galery");
-    let options = {
+    let options:ImagePickerOptions = {
       maximumImagesCount: 1,
       width: 500,
-      height: 500
+      height: 500,
     };
     this.imagePicker.getPictures(options).then((results) => {
       this.imgtree = results[0];

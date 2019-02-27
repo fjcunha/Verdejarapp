@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, MenuController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -36,45 +36,9 @@ export class NewtreePage {
               private imagePicker:ImagePicker,
               private arvoreProvider: ArvoreProvider,
               private storageProvider:StorageProvider,
-              private crop:Crop
+              private crop:Crop,
+              private menuCtrl:MenuController
               ) {
-  }
-
-
-  upload(URIimage, fileName) {
-    
-    let loading = this.loadingCtrl.create();
-    loading.present();
-    // this.userService.Upload(URIimage, fileName).then(res => {
-    //   loading.dismiss();
-    //   console.log("result UPLOAD");
-    //   console.log(res);
-    //   if (JSON.stringify(res).indexOf('sucesso') != -1) {
-    //     let alertMessage = this.alertCtrl.create({
-    //       title: 'Imagem enviada',
-    //       subTitle: 'Sua imagem de perfil foi atualizada',
-    //       buttons: ['OK']
-    //     });
-    //     alertMessage.present();
-    //   } else {
-    //     let alertMessage = this.alertCtrl.create({
-    //       title: 'Falhar ao enviar imagem',
-    //       subTitle: 'Erro ao enviar imagem para o servidor',
-    //       buttons: ['OK']
-    //     });
-    //     alertMessage.present();
-    //   }
-    // },
-    //   err => {
-    //     loading.dismiss();
-    //     console.log(err);
-    //     let alertMessage = this.alertCtrl.create({
-    //       title: 'Falhar ao enviar imagem',
-    //       subTitle: 'Erro ao enviar imagem para o servidor',
-    //       buttons: ['OK']
-    //     });
-    //     alertMessage.present();
-    //   })
   }
 
   CropImage(imgAddress){
@@ -217,14 +181,21 @@ export class NewtreePage {
   }
 
   public LoadUserInit(){
-		
-		console.log("Load User");
-
 		this.storageProvider.GetStorage('VerdejarUser').then(user=>{
-	    this.user = user;
-    });
+      if(user != null) {
 
-		
+        console.log('Logado');
+        this.user = user;
+        this.menuCtrl.enable(true, 'Auth');
+        this.menuCtrl.enable(false, 'NotAuth');
+			}
+			else{
+				console.log("Não logado");
+				this.menuCtrl.enable(false, 'Auth');
+        this.menuCtrl.enable(true, 'NotAuth');
+        this.navCtrl.setRoot('LoginPage');
+			}
+    });
 	}
 
   //tentando pegar os itens do select
@@ -275,6 +246,24 @@ export class NewtreePage {
   }
 
   CreateTree(){
+    console.log(this.tree);
+
+    if(this.tree.SpecieID == 0 || this.tree.SpecieID == null){
+      this.alertCtrl.create({title:'Escolha uma espécie',buttons:['OK']}).present();
+      return;
+    }
+
+    if(this.imgtree == null || this.imgtree.trim() == ''){
+      this.alertCtrl.create({title:'Selecione uma foto para a árvore.',buttons:['OK']}).present();
+      return;
+    }
+
+    if(this.tree.Latitude == null || this.tree.Latitude.trim() == '' ||
+       this.tree.Longitude == null || this.tree.Longitude.trim() == ''){
+        this.alertCtrl.create({title:'Erro Localização',message:'Falha ao pegar localização, verifique suas permissões e configurações de GPS.',buttons:['OK']}).present();
+        return;
+    }
+
     this.tree.UserID = this.user.UserID;
     console.log(JSON.stringify(this.tree));
     let loading = this.loadingCtrl.create();
@@ -304,35 +293,6 @@ export class NewtreePage {
       loading.dismiss();
       console.log(err);
     })
-    // this.arvoreProvider.uploadFoto(1,this.imgtree,'1.jpg').then(result=>{
-      
-
-    //   console.log(JSON.stringify(result));
-    //   this.navCtrl.setRoot('MyTreesPage');
-    // },err=>{
-
-    //   console.log(JSON.stringify(err));
-    //   this.navCtrl.setRoot('MyTreesPage');
-    // })
   }
 
-}////
-// function camera() {
-//   const options: CameraOptions = {
-//     quality: 100,
-//     destinationType: this.camera.DestinationType.FILE_URI,
-//     encodingType: this.camera.EncodingType.JPEG,
-//     mediaType: this.camera.MediaType.PICTURE
-//   }
-  
-//   this.camera.getPicture(options).then((imageData) => {
-//    // imageData is either a base64 encoded string or a file URI
-//    // If it's base64 (DATA_URL):
-//    let base64Image = 'data:image/jpeg;base64,' + imageData;
-//   }, (err) => {
-//    // Handle error
-//   });
-// }
-
-
-
+}

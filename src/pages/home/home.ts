@@ -38,9 +38,6 @@ export class HomePage {
 	}
 	
 	public LoadUserInit(){
-		
-		console.log("Load User");
-
 		this.storageProvider.GetStorage('VerdejarUser').then(user=>{
       if(user != null) {
 
@@ -55,9 +52,7 @@ export class HomePage {
         this.menuCtrl.enable(true, 'NotAuth');
         this.app.getRootNav().setRoot('LoginPage');
 			}
-	    });
-
-		
+    });
 	}
 
 	public LoadConfigs(){

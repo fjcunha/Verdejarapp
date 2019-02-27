@@ -186,6 +186,20 @@ export class MapsPage {
             loading.dismiss();
           }).catch((error) => {
             loading.dismiss();
+            let confirm = this.alertCtrl.create({
+              title: 'Falha na localização',
+              message: 'Por favor, verifique as configurações e permissões de GPS do seu dispositivo.',
+              buttons: [
+                {
+                  text: 'OK',
+                  handler: () => {
+                    this.navCtrl.setRoot('TabsPage');
+                  }
+                }
+              ]
+            });
+      
+            confirm.present();
             console.log('Erro ao recuperar sua posição', error);
           });
 

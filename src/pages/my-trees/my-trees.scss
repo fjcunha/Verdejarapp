@@ -1,3 +1,26 @@
 page-my-trees {
+  .tree-item{
+    border-radius: 20px;
+    background: #ffffff;
+    margin-bottom: 5px;
+  }
+
+  .new-tree-text{
+    font-size:18pt;
+    color: #1a381594;
+    font-family: cursive;
+    font-weight: bold;
+    
+  }
+
+  .item-md.item-block .item-inner {
+    padding-right: 8px;
+    border-bottom: none;
+  }
+  .item-md.item-block .item-inner {
+    padding-right: 8px;
+    border-bottom: none;
+    /* border-bottom: 1px solid #dedede; */
+  }
 
 }

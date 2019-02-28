@@ -14,7 +14,7 @@ export class ApiUrlProvider {
   private static LOCAL_IP = "http://192.168.100.6/verdejarweb/api/";
   private static ACCESS_TOKEN = "a94aaff5737e7d153dd7302a80ecaf7d";
 
-  public static readonly PROD:boolean = false;
+  public static readonly PROD:boolean = true;
   public static readonly DEPLOY:boolean = true;
 
   private static SERVER_BASE = ApiUrlProvider.PROD ? "http://intelprog-001-site13.btempurl.com/" : 

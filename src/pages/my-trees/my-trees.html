@@ -26,19 +26,23 @@
       <!-- <button ion-button clear item-end>View</button> -->
     </ion-item>
 
-    <ion-item text-wrap class="tree-item" *ngIf="_customer.Trees?.lenght == 0">
+    <ion-item text-wrap class="tree-item" *ngIf="_customer.Trees?.length == 0">
       <h3 style="    text-align: center;
       font-weight: bold;
       font-size: 16px;">Você não possui árvores cadastradas</h3>
     </ion-item>
 
-    <ion-item class="tree-item" *ngFor="let tree of _customer.Trees">
+    <ion-item class="tree-item" *ngFor="let tree of _customer.Trees" (click)="TreeDetails(tree.TreeID)">
       <ion-thumbnail item-start>
         <img src="{{_imgUrl + tree.Photos[0]?.Url}}">
       </ion-thumbnail>
-      <!-- <h2>Data Criação: <br/> {{tree.created_at}}</h2> -->
-      <p>{{tree.Specie?.Name}}</p>
-      <!-- <button ion-button clear item-end>View</button> -->
+      <h2>{{tree.Specie?.Name}}</h2>
+      <p>Data Criação: {{tree.Created_at}}</p>
+      <h2>Fotos: {{tree.Photos.length}}</h2>
+      <p style="position: absolute;
+      bottom: 5px;
+      right: 15px;
+      font-size: 12px;">Clique para ver mais...</p>
     </ion-item>
   </ion-list>
 </ion-content>

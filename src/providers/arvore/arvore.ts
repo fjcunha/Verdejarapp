@@ -55,7 +55,7 @@ export class ArvoreProvider {
 
 	get(id:number) {
 
-		let url: string = this.APIURL + "/arvore/"+id;
+		let url: string = this.APIURL + "trees/"+id;
 
 		return this.http.get<IArvore>(url, { headers: this.headers });
 	}

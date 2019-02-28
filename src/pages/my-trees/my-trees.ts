@@ -51,6 +51,11 @@ export class MyTreesPage {
       }
     });		
   }
+
+  TreeDetails(treeId:number){
+    console.log(treeId);
+    this.navCtrl.push('TreeDetailsPage',{treeId:treeId});
+  }
   
   GetUserData(){
 		this.customerProvider.UserData(this._customer.UserID).subscribe(retorno => {

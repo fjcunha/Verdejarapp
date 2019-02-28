@@ -8,7 +8,7 @@ export interface IArvore {
   Latitude?:string;
   Longitude?:string;
   Status?:Status;
-
+  Created_at?:string;
   //Foreing key
   UserID?:number;
   User?:IUsuario;
